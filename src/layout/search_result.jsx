@@ -1,14 +1,16 @@
 import React from "react";
 import Breadcrumb from "../components/breadcrumb";
 import Footer from "../components/footer";
-import Search_MainContent from "../components/Search_mainContent";
+import Search_mainContent from "../components/Search_mainContent";
 
-const Search =() =>{
+const Search =(props) =>{
+
     return(
         <>
-        <Breadcrumb/>
-        <Search_MainContent/>
-        
+            {console.log("doctors in Search component: " + props.doctors.length)}
+        <Breadcrumb noOfMatches={props.doctors.length} searchLocation={props.searchLocation} searchConditions={props.searchConditions}/>
+        <Search_mainContent doctors={props.doctors}/>
+
         </>
     )
 };

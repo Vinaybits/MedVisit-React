@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import logo from '../assets/img/logo.png';
+import Link from "@material-ui/core/Link";
 
 class header extends Component {
   constructor(props) {
@@ -9,57 +10,42 @@ class header extends Component {
   render() {
     return (
       <>
-        <header class="header">
-          <nav class="navbar navbar-expand-lg header-nav">
-            <div class="navbar-header">
+        <header className="header">
+          <nav className="navbar navbar-expand-lg header-nav">
+            <div className="navbar-header">
               <a id="mobile_btn" href="javascript:void(0);">
-                <span class="bar-icon">
+                <span className="bar-icon">
                   <span></span>
                   <span></span>
                   <span></span>
                 </span>
               </a>
-              <a href="index.html" class="navbar-brand logo">
-                <img src={logo} class="img-fluid" alt="Logo" />
-              </a>
             </div>
-            <div class="main-menu-wrapper">
-              <div class="menu-header">
-                <a href="index.html" class="menu-logo">
-                  <img src={logo} class="img-fluid" alt="Logo" />
-                </a>
+            <div className="main-menu-wrapper">
+              <div className="menu-header">
                 <a
                   id="menu_close"
-                  class="menu-close"
+                  className="menu-close"
                   href="javascript:void(0);"
                 >
-                  <i class="fas fa-times"></i>
+                  <i className="fas fa-times"></i>
                 </a>
               </div>
-              <ul class="main-nav">
-                <li class="active">
-                  <a href="index.html">Home</a>
-                </li>
-               
-                <li class="login-link">
-                  <a href="login.html">Login / Signup</a>
-                </li>
-              </ul>
             </div>
-            <ul class="nav header-navbar-rht">
-              <li class="nav-item contact-item">
-                <div class="header-contact-img">
-                  <i class="far fa-hospital"></i>
+            <ul className="nav header-navbar-rht">
+              <li className="nav-item contact-item">
+                <div className="header-contact-img">
+                  <i className="far fa-hospital"></i>
                 </div>
-                <div class="header-contact-detail">
-                  <p class="contact-header">Contact</p>
-                  <p class="contact-info-header"> +91 857 4151 908</p>
+                <div className="header-contact-detail">
+                  <p className="contact-header">Contact</p>
+                  <p className="contact-info-header"> +91 857 4151 908</p>
                 </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link header-login" href="login.html">
+              <li className="nav-item">
+                <Link className='nav-link header-login' href="/patient/login" variant="body2">
                   login / Signup{" "}
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

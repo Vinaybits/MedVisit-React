@@ -1121,6 +1121,18 @@ button.bg-danger:hover {
 .tab-content {
 	padding-top: 20px;
 }
+
+.header-navbar-rht .logged-item .nav-link {
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	font-size: 14px;
+	line-height: 85px;
+	padding: 0 10px;
+}
 .nav-tabs .nav-link {
 	border-radius: 0;
 }
@@ -2263,7 +2275,7 @@ html.menu-opened body {
 }
 .search-box .search-info {
     -ms-flex: 0 0 490px;
-    flex: 0 0 490px;
+    flex: 0 0 302px;
     margin-right: 12px;
     position: relative;
     width: 490px;
@@ -2438,6 +2450,21 @@ html.menu-opened body {
     -o-transition:all .3s ease 0s;
     transition:all .3s ease 0s;
 	padding: 15px;
+}
+
+.profile-widget-small {
+	background-color: #fff;
+	border: 1px solid #f0f0f0;
+	border-radius:4px;
+	margin-bottom:30px;
+	position:relative;
+	-webkit-transition:all .3s ease 0s;
+	-moz-transition:all .3s ease 0s;
+	-o-transition:all .3s ease 0s;
+	transition:all .3s ease 0s;
+	padding: 15px;;
+	width: 60%;
+	height: 70%;
 }
 .doc-img {
     position: relative;
@@ -2963,6 +2990,21 @@ html.menu-opened body {
     text-transform: uppercase;
     width: 100%;
 }
+
+.clinic-booking button {
+	background-color: #fff;
+	border: 2px solid #20c0f3;
+	border-radius: 4px;
+	color: #20c0f3;
+	display: block;
+	font-size: 14px;
+	font-weight: 500;
+	letter-spacing: 1px;
+	padding: 10px 20px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 100%;
+}
 .clinic-booking a.view-pro-btn:hover, .clinic-booking a.view-pro-btn:focus {
 	background: #20c0f3; 
 	color: #fff;
@@ -3446,6 +3488,14 @@ html.menu-opened body {
 .schedule-cont {
     padding: 20px;
 }
+.time-slot {
+	list-style: none;
+	margin-right: -5px;
+	margin-left: -5px;
+	margin-bottom: 0;
+	padding: 0;
+}
+
 .time-slot ul {
     list-style: none;
     margin-right: -5px;
@@ -3460,7 +3510,7 @@ html.menu-opened body {
     width: 14.28%;
 }
 .time-slot li .timing {
-    background-color: #e9e9e9;
+    background-color: lightgreen;
     border: 1px solid #e9e9e9;
     border-radius: 3px;
     color: #757575;
@@ -3469,6 +3519,19 @@ html.menu-opened body {
     margin-bottom: 10px;
     padding: 5px 5px;
     text-align: center;
+	position: relative;
+}
+
+.time-slot li .timing-orange {
+	background-color: orangered;
+	border: 1px solid #e9e9e9;
+	border-radius: 3px;
+	color: #757575;
+	display: block;
+	font-size: 14px;
+	margin-bottom: 10px;
+	padding: 5px 5px;
+	text-align: center;
 	position: relative;
 }
 .time-slot li .timing:hover {
@@ -6619,6 +6682,10 @@ html.menu-opened body {
 	.clinic-booking a.apt-btn {
 		width: 100%;
 	}
+
+	.clinic-booking button.apt-btn {
+		width: 100%;
+	}
 	.chat-cont-left .chat-users-list a.media .media-body > div:first-child .user-name, 
 	.chat-cont-left .chat-users-list a.media .media-body > div:first-child .user-last-chat {
 		max-width: 160px;
@@ -6684,5 +6751,10 @@ html.menu-opened body {
 	}
 	.fc-header-toolbar .fc-right {
 		margin-bottom: 10px;
+	}
+	.appointment-checkout-button {
+		position: fixed;
+		top: 10px;
+		left: 10px;
 	}
 }
