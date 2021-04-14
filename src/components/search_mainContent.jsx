@@ -6,7 +6,7 @@ import {Link, Redirect} from "react-router-dom";
 import HomeService from "./home.service";
 import Breadcrumb from "./breadcrumb";
 
-class Search_mainContent extends Component {
+class SearchMainContent extends Component {
 
 	constructor(props) {
 		super(props)
@@ -236,4 +236,4 @@ class Search_mainContent extends Component {
 	}
 };
 
-export default Search_mainContent;
+export default SearchMainContent;
