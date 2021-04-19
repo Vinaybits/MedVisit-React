@@ -1,9 +1,13 @@
 import axios from 'axios';
 
+var produrl = "http://ec2-65-1-201-4.ap-south-1.compute.amazonaws.com";
+var devurl =  "http://ec2-65-1-201-4.ap-south-1.compute.amazonaws.com";
+
 export default class HomeService {
-    
+
+
     getDoctor = (data) => {
-        const URL = 'http://localhost:8090/api/v1/doctors/getDoctorByName';
+        const URL = `${devurl}/api/v1/doctors/getDoctorByName`;
         return axios({
             url: URL,
             method: 'GET',
@@ -18,7 +22,7 @@ export default class HomeService {
     }
 
     getDoctorsByTreatingCondition = (conditions) => {
-        const URL = 'http://localhost:8090/api/v1/doctors/' + encodeURIComponent(conditions);
+        const URL = `${devurl}/api/v1/doctors/` + encodeURIComponent(conditions);
         return axios({
             url: URL,
             method: 'GET'
@@ -32,7 +36,7 @@ export default class HomeService {
     }
 
     getDoctorsByLocation = (location) => {
-        const URL = 'http://localhost:8090/api/v1/doctors/' + location;
+        const URL = `${devurl}/api/v1/doctors/` + location;
         return axios({
             url: URL,
             method: 'GET'
@@ -46,7 +50,7 @@ export default class HomeService {
     }
 
     getConditionsAndSpecialities = (searchText) => {
-        const URL = 'http://localhost:8090/api/v1/conditions/' + searchText;
+        const URL = `${devurl}/api/v1/conditions/` + searchText;
         return axios({
             url: URL,
             method: 'GET'
@@ -60,7 +64,7 @@ export default class HomeService {
     }
 
     getSearchLocations = (searchText) => {
-        const URL = 'http://localhost:8090/api/v1/locations/' + searchText;
+        const URL = `${devurl}api/v1/locations/` + searchText;
         return axios({
             url: URL,
             method: 'GET'
@@ -74,7 +78,7 @@ export default class HomeService {
     }
 
     userAuthenticate = (data) =>{
-        const URL = "http://localhost:8090/patient/login";
+        const URL = `${devurl}/api/v1/patient/login`;
         return axios({
             url: URL,
             method: 'POST',
@@ -93,7 +97,7 @@ export default class HomeService {
     }
 
     registerPatient = (data) =>{
-        const URL = "http://localhost:8090/patient/register";
+        const URL = `${devurl}/api/v1/patient/register`;
         return axios({
             url: URL,
             method: 'POST',
@@ -112,7 +116,7 @@ export default class HomeService {
     }
 
     requestAppointment = (data) =>{
-        const URL = "http://localhost:8090/appointment/request";
+        const URL = `${devurl}/appointment/request`;
         return axios({
             url: URL,
             method: 'POST',
@@ -131,7 +135,7 @@ export default class HomeService {
     }
 
     getDoctorCalendarOffDaysAndNonAvailableSlots = (doctorId, clinicId, fromDate, toDate) => {
-        const URL = 'http://localhost:8090/api/v1/doctorcalendar/daysOff?doctorId=' + doctorId
+        const URL = `${devurl}/api/v1/doctorcalendar/daysOff?doctorId=` + doctorId
             + '&clinicId=' + clinicId + '&fromDate=' + fromDate + '&toDate=' + toDate;
         return axios({
             url: URL,
@@ -147,7 +151,7 @@ export default class HomeService {
     }
 
     getDoctorCalendarSlotsOff = (doctorId, clinicId, fromDate, toDate) => {
-        const URL = 'http://localhost:8090/api/v1/doctorcalendar/slotsOff?doctorId=' + doctorId
+        const URL = `${devurl}/api/v1/doctorcalendar/slotsOff?doctorId=` + doctorId
             + '&clinicId=' + clinicId + '&fromDate=' + fromDate + '&toDate=' + toDate;
         return axios({
             url: URL,
@@ -163,7 +167,7 @@ export default class HomeService {
     }
 
     getDoctorById = (doctorId) => {
-        const URL = 'http://localhost:8090/api/v1/doctor/' + doctorId;
+        const URL = `${devurl}/api/v1/doctor/` + doctorId;
         return axios({
             url: URL,
             method: 'GET',
