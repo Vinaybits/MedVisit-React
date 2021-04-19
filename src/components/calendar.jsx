@@ -95,12 +95,15 @@ class Calendar extends Component {
 			'patient_first_name' : this.state.patient.firstName,
 			'patient_last_name' : this.state.patient.lastName,
 			'patient_email' : this.state.patient.email,
-			'patient_phone' : this.state.patient.phone
+			'patient_phone' : this.state.patient.phone,
+			'doctor_name' : this.props.location.state.doctor.name,
+			'doctor_email' : this.props.location.state.doctor.email,
+			'clinic_name' : this.props.location.state.doctor.clinic_name,
 		};
 
 		try {
 			this.homeService.requestAppointment(body).then((response)=>{
-				if(response.status===200){
+				if((response.status) && response.status===200){
 					this.setState({navigateToCheckoutPage : true});
 					console.log("Appointment requested successfully ")
 				} else if(response.status === 400){
@@ -164,7 +167,7 @@ class Calendar extends Component {
 			}
 		}
 
-		this.getDoctorCalendarSlotsOff(date);
+		//this.getDoctorCalendarSlotsOff(date);
 		return false;
 	}
 

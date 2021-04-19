@@ -79,9 +79,7 @@ class PatientLogin extends Component {
                                             </div>
 
                                             {this.state.loginError && (
-                                                <div style={{ color: "#B31E6F" }}>
-                                                    <span>{this.state.loginError}</span>
-                                                </div>
+                                                <div className="text-danger">{this.state.loginError}</div>
                                             )}
                                             <form onSubmit={this.handleSubmit}>
                                                 <div className="form-group form-focus">
