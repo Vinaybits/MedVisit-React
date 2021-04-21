@@ -242,7 +242,7 @@ class Search_section extends Component {
 								</button>
 							</form>
 
-							<hr></hr>
+							
 						</div>
 
 					</div>

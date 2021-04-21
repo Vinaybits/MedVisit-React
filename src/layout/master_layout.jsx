@@ -37,7 +37,7 @@ class MasterLayout extends Component {
     }
     return (
       <>
-        <Breadcrumb/>
+        
         {currentView()}
         <Footer />
       </>

@@ -2,8 +2,8 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, {Component} from "react";
 import logo from '../src/assets/img/logo.png';
+import userprofile from '../src/assets/img/doctors/doctor-01.jpg'
 
-import {Navbar, Nav,NavDropdown, NavLink, NavItem} from 'react-bootstrap';
 import {reactLocalStorage} from 'reactjs-localstorage';
 
 import Master_layout from "./layout/master_layout";
@@ -64,44 +64,73 @@ class App extends Component {
             <>
                 <div className="main-wrapper">
                     <Router>
-
-                        <Navbar bg="light" variant="dark">
-                            <Navbar.Brand > {/*href="#home"*/}
-                                <a href="/" className="menu-logo">
-                                    <img src={logo} className="img-fluid" alt="Logo"/>
-                                </a>
-                            </Navbar.Brand>
-                            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                            <Navbar.Collapse id="responsive-navbar-nav">
-                                <Nav className="mr-auto">
-                                </Nav>
-                                <ul className="nav header-navbar-rht">
-                                    <li className="nav-item contact-item">
-                                        <div className="header-contact-img">
-                                            <i className="far fa-hospital"></i>
-                                        </div>
-                                        <div className="header-contact-detail">
-                                            <p className="contact-header">Contact</p>
-                                            <p className="contact-info-header"> +91 857 4151 908</p>
-                                        </div>
-                                    </li>
-                                    {!this.state.firstName &&
-                                    <li className="nav-item">
-                                        <Link className='nav-link header-login' href="/patient/login" variant="body2">
-                                            login / Signup{" "}
-                                        </Link>
-                                    </li>
-                                    }
-                                </ul>
-                                {this.state.firstName &&
-                                <NavDropdown title={this.state.firstName} id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="/patient/login"
-                                                      onClick={() => this.logOut()}>Logout</NavDropdown.Item>
-                                </NavDropdown>
-                                }
-
-                            </Navbar.Collapse>
-                        </Navbar>
+                    <nav class="navbar navbar-expand-lg header-nav">
+					<div class="navbar-header">
+						<a id="mobile_btn" href="javascript:void(0);">
+							<span class="bar-icon">
+								<span></span>
+								<span></span>
+								<span></span>
+							</span>
+						</a>
+						<a href="index-2.html" class="navbar-brand logo">
+							<img src={logo} class="img-fluid" alt="Logo"/>
+						</a>
+					</div>
+					<div class="main-menu-wrapper">
+						<div class="menu-header">
+							<a href="index-2.html" class="menu-logo">
+								<img src={logo} class="img-fluid" alt="Logo"/>
+							</a>
+							<a id="menu_close" class="menu-close" href="javascript:void(0);">
+								<i class="fas fa-times"></i>
+							</a>
+						</div>
+						
+					</div>		 
+					<ul class="nav header-navbar-rht">
+						<li class="nav-item contact-item">
+							<div class="header-contact-img">
+								<i class="far fa-hospital"></i>							
+							</div>
+							<div class="header-contact-detail">
+								<p class="contact-header">Contact</p>
+								<p class="contact-info-header"> +1 315 369 5943</p>
+							</div>
+						</li>
+						
+                        <li class="nav-item">
+                        <button type="button" class="btn btn-rounded btn-outline-success">Login</button>
+						</li>
+                        <li class="nav-item">
+                        <button type="button" class="btn btn-rounded btn-outline-info">Signup</button>
+						</li>
+						<li class="nav-item dropdown has-arrow logged-item">
+							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+								<span class="user-img">
+									<img class="rounded-circle" src={userprofile} width="31" alt={this.state.firstName}/>
+								</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right">
+								<div class="user-header">
+									<div class="avatar avatar-sm">
+										<img src={userprofile} alt="User Image" class="avatar-img rounded-circle"/>
+									</div>
+									<div class="user-text">
+										<h6>{this.state.firstName}</h6>
+										<p class="text-muted mb-0">8574151908</p>
+									</div>
+								</div>
+								
+								<a class="dropdown-item" href="doctor-profile-settings.html">Profile Settings</a>
+								<a class="dropdown-item" href="" onClick={() => this.logOut()}>Logout</a>
+							</div>
+						</li>
+						
+						
+					</ul>
+				</nav>
+                       
                         <Switch>
                             <Route exact path={"/"} render ={(props) => <Master_layout {...props}/>}/>
 

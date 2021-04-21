@@ -51,12 +51,7 @@ const Footer = () => {
                 <div className="footer-widget footer-menu">
                   <h2 className="footer-title">For Patients</h2>
                   <ul>
-                    <li>
-                      <a href="/">
-                        <i className="fas fa-angle-double-right"></i> Search for
-                        Doctors
-                      </a>
-                    </li>
+                   
                     <li>
                       <a href="/patient/login">
                         <i className="fas fa-angle-double-right"></i> Login
@@ -69,7 +64,13 @@ const Footer = () => {
                     </li>
                     <li>
                       <a href="/">
-                        <i className="fas fa-angle-double-right"></i> Booking
+                        <i className="fas fa-angle-double-right"></i> Search for
+                        Doctors
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/">
+                        <i className="fas fa-angle-double-right"></i> Request Appointment
                       </a>
                     </li>
                   </ul>
@@ -80,23 +81,7 @@ const Footer = () => {
                 <div className="footer-widget footer-menu">
                   <h2 className="footer-title">For Doctors</h2>
                   <ul>
-                    <li>
-                      <a href="login.html">
-                        <i className="fas fa-angle-double-right"></i> Login
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/patient/register">
-                        <i className="fas fa-angle-double-right"></i> Register
-                      </a>
-                    </li>
-
-                    <li>
-                      <a href="chat.html">
-                        <i className="fas fa-angle-double-right"></i> Connect with
-                        us
-                      </a>
-                    </li>
+                   
 
                     <li>
                       <a href="doctor-dashboard.html">
