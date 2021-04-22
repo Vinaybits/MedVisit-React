@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Footer from "../components/footer";
 
 import Homepage from "./homepage";
 class MasterLayout extends Component {
@@ -19,7 +20,9 @@ class MasterLayout extends Component {
         return "";
       }
     }
-    return <>{currentView()}</>;
+    return <>{currentView()}
+    <Footer/>
+    </>;
   }
 }
 

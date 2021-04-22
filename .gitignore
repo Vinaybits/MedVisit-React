@@ -26,4 +26,6 @@ yarn-error.log*
 #local
 /.idea/
 /.eslintcache
+/eslintcache
+.eslintcache/
 .eslintcache
