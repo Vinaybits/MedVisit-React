@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import doc_img1 from '../assets/img/doctors/doctor-01.jpg'
-import doc_img2 from '../assets/img/doctors/doctor-02.jpg'
-import doc_img3 from '../assets/img/doctors/doctor-03.jpg'
+import doc_img1 from "../assets/img/doctors/doctor-01.jpg";
+import doc_img2 from "../assets/img/doctors/doctor-02.jpg";
+import doc_img3 from "../assets/img/doctors/doctor-03.jpg";
 
 class Doc_section extends Component {
   constructor(props) {
@@ -9,9 +9,9 @@ class Doc_section extends Component {
     this.state = {};
   }
 
-  doSomething =() => {
+  doSomething = () => {
     // do something
-  }
+  };
   render() {
     return (
       <>
@@ -36,7 +36,9 @@ class Doc_section extends Component {
                     aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing
                     elit, sed do eiusmod tempor incididunt ut labore et{" "}
                   </p>
-                  <a href="#!" onClick={this.doSomething}>Read More..</a>
+                  <a href="#!" onClick={this.doSomething}>
+                    Read More..
+                  </a>
                 </div>
               </div>
               <div className="col-lg-8">
@@ -66,14 +68,17 @@ class Doc_section extends Component {
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star filled"></i>
-                        <span className="d-inline-block average-rating">(17)</span>
+                        <span className="d-inline-block average-rating">
+                          (17)
+                        </span>
                       </div>
                       <ul className="available-info">
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Xyz, USA
                         </li>
                         <li>
-                          <i className="far fa-clock"></i> Available on Fri, 22 Mar
+                          <i className="far fa-clock"></i> Available on Fri, 22
+                          Mar
                         </li>
                         <li>
                           <i className="far fa-money-bill-alt"></i> $300
@@ -86,7 +91,10 @@ class Doc_section extends Component {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn">
+                          <a
+                            href="doctor-profile.html"
+                            className="btn view-btn"
+                          >
                             View Profile
                           </a>
                         </div>
@@ -124,14 +132,17 @@ class Doc_section extends Component {
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star"></i>
-                        <span className="d-inline-block average-rating">(35)</span>
+                        <span className="d-inline-block average-rating">
+                          (35)
+                        </span>
                       </div>
                       <ul className="available-info">
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Newyork, USA
                         </li>
                         <li>
-                          <i className="far fa-clock"></i> Available on Fri, 22 Mar
+                          <i className="far fa-clock"></i> Available on Fri, 22
+                          Mar
                         </li>
                         <li>
                           <i className="far fa-money-bill-alt"></i> $50 - $300
@@ -144,7 +155,10 @@ class Doc_section extends Component {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn">
+                          <a
+                            href="doctor-profile.html"
+                            className="btn view-btn"
+                          >
                             View Profile
                           </a>
                         </div>
@@ -182,14 +196,17 @@ class Doc_section extends Component {
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star"></i>
-                        <span className="d-inline-block average-rating">(27)</span>
+                        <span className="d-inline-block average-rating">
+                          (27)
+                        </span>
                       </div>
                       <ul className="available-info">
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Georgia, USA
                         </li>
                         <li>
-                          <i className="far fa-clock"></i> Available on Fri, 22 Mar
+                          <i className="far fa-clock"></i> Available on Fri, 22
+                          Mar
                         </li>
                         <li>
                           <i className="far fa-money-bill-alt"></i> $100 - $400
@@ -202,7 +219,10 @@ class Doc_section extends Component {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn">
+                          <a
+                            href="doctor-profile.html"
+                            className="btn view-btn"
+                          >
                             View Profile
                           </a>
                         </div>
@@ -240,14 +260,17 @@ class Doc_section extends Component {
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star filled"></i>
-                        <span className="d-inline-block average-rating">(17)</span>
+                        <span className="d-inline-block average-rating">
+                          (17)
+                        </span>
                       </div>
                       <ul className="available-info">
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Xyz, USA
                         </li>
                         <li>
-                          <i className="far fa-clock"></i> Available on Fri, 22 Mar
+                          <i className="far fa-clock"></i> Available on Fri, 22
+                          Mar
                         </li>
                         <li>
                           <i className="far fa-money-bill-alt"></i> $300
@@ -260,7 +283,10 @@ class Doc_section extends Component {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn">
+                          <a
+                            href="doctor-profile.html"
+                            className="btn view-btn"
+                          >
                             View Profile
                           </a>
                         </div>
@@ -298,14 +324,17 @@ class Doc_section extends Component {
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star"></i>
-                        <span className="d-inline-block average-rating">(35)</span>
+                        <span className="d-inline-block average-rating">
+                          (35)
+                        </span>
                       </div>
                       <ul className="available-info">
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Newyork, USA
                         </li>
                         <li>
-                          <i className="far fa-clock"></i> Available on Fri, 22 Mar
+                          <i className="far fa-clock"></i> Available on Fri, 22
+                          Mar
                         </li>
                         <li>
                           <i className="far fa-money-bill-alt"></i> $50 - $300
@@ -318,7 +347,10 @@ class Doc_section extends Component {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn">
+                          <a
+                            href="doctor-profile.html"
+                            className="btn view-btn"
+                          >
                             View Profile
                           </a>
                         </div>
@@ -356,14 +388,17 @@ class Doc_section extends Component {
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star filled"></i>
                         <i className="fas fa-star"></i>
-                        <span className="d-inline-block average-rating">(27)</span>
+                        <span className="d-inline-block average-rating">
+                          (27)
+                        </span>
                       </div>
                       <ul className="available-info">
                         <li>
                           <i className="fas fa-map-marker-alt"></i> Georgia, USA
                         </li>
                         <li>
-                          <i className="far fa-clock"></i> Available on Fri, 22 Mar
+                          <i className="far fa-clock"></i> Available on Fri, 22
+                          Mar
                         </li>
                         <li>
                           <i className="far fa-money-bill-alt"></i> $100 - $400
@@ -376,7 +411,10 @@ class Doc_section extends Component {
                       </ul>
                       <div className="row row-sm">
                         <div className="col-6">
-                          <a href="doctor-profile.html" className="btn view-btn">
+                          <a
+                            href="doctor-profile.html"
+                            className="btn view-btn"
+                          >
                             View Profile
                           </a>
                         </div>
