@@ -31,21 +31,25 @@ class PatientRegister extends Component {
       phone: e.target.elements["phone"].value,
       password: e.target.elements["password"].value,
     };
-    try {
-      this.homeService.registerPatient(body).then((response) => {
-        if (response.status === 200) {
-          console.log(response);
-          console.log(response.data);
-          this.props.onChangeValue(response.data);
-          this.setState({ userLoggedIn: true });
-        } else if (response.status === 400) {
-          this.setState({ loginError: response.data.message });
-        } else {
-          this.setState({ loginError: "Error Occurred, Please try later" });
-        }
-      });
-    } catch (error) {
-      console.error(error);
+    if (!body.phone || !body.password || !body.name) {
+      this.setState({ loginError: "Please Enter Correct details" });
+    } else {
+      try {
+        this.homeService.registerPatient(body).then((response) => {
+          if (response.status === 200) {
+            console.log(response);
+            console.log(response.data);
+            this.props.onChangeValue(response.data);
+            this.setState({ userLoggedIn: true });
+          } else if (response.status === 400) {
+            this.setState({ loginError: response.data.message });
+          } else {
+            this.setState({ loginError: "Error Occurred, Please try later" });
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 
