@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import HomeService from "./home.service";
+import '../components/patient.css'
 
 class PatientLogin extends Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class PatientLogin extends Component {
 
     return (
       <>
+     
         <Modal
           show={this.props.show}
           onHide={() => {
@@ -70,52 +72,50 @@ class PatientLogin extends Component {
           }}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Login</Modal.Title>
+            <Modal.Title style={{textAlign:"center"}}>
+              <span style={{textAlign:"center"}}>Login</span>
+              </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div className="content">
-              <div className="container-fluid">
-                <div className="row">
-                  <div className="col-md-8 offset-md-2">
-                    <div className="account-content">
-                      <div className="row align-items-center justify-content-center">
+          <div class="myform form ">
+					 
+          
                         {this.state.loginError && (
                           <div style={{ color: "#B31E6F" }}>
                             <span>{this.state.loginError}</span>
                           </div>
                         )}
                         <form onSubmit={this.handleSubmit}>
-                          <div className="form-group form-focus">
-                            <input
-                              id="phone"
-                              type="phone"
-                              name="phone"
-                              className="form-control floating"
-                            />
-                            <label className="focus-label">Phone</label>
+                        <div class="form-group">
+                              <label for="exampleInputEmail1">Mobile Number</label>
+                            <input id="phone"  type="phone"   name="phone" className="form-control floating" />
+                        </div>
+                           
+                        <div class="form-group">
+                              <label for="exampleInputEmail1">Password</label>
+                            <input id="password" type="password"  name="password"  className="form-control floating" />
+                            
                           </div>
-                          <div className="form-group form-focus">
-                            <input
-                              id="password"
-                              type="password"
-                              name="password"
-                              className="form-control floating"
-                            />
-                            <label className="focus-label">Password</label>
-                          </div>
-                          <button
-                            className="btn btn-primary btn-block btn-lg login-btn"
-                            type="submit"
-                          >
-                            Login
-                          </button>
+                          <div class="form-group">
+                              <p class="text-center">By signing in you accept our <a href="#">Terms Of Use</a></p>
+                           </div>
+                           <div class="col-md-12 text-center ">
+                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                           </div>
+                           <div class="col-md-12 ">
+                              <div class="login-or">
+                                 <hr class="hr-or"/>
+                                 <span class="span-or">or</span>
+                              </div>
+                           </div>
+                           
+                           <div class="form-group">
+                              <p class="text-center">Don't have account? <a href="#" id="signup" class="text-info">Sign up here</a></p>
+                           </div>
                         </form>
-                      </div>
-                    </div>
+                    
                   </div>
-                </div>
-              </div>
-            </div>
+           
           </Modal.Body>
         </Modal>
       </>

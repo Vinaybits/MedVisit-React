@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import HomeService from "./home.service";
 
 import { Modal } from "react-bootstrap";
+import '../components/patient.css'
 
 class PatientRegister extends Component {
   constructor(props) {
@@ -62,12 +63,7 @@ class PatientRegister extends Component {
             <Modal.Title>Sign Up</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div className="content">
-              <div className="container-fluid">
-                <div className="row">
-                  <div className="col-md-8 offset-md-2">
-                    <div className="account-content">
-                      <div className="row align-items-center justify-content-center">
+          <div class="myform form ">
                         {this.state.loginError && (
                           <div style={{ color: "#B31E6F" }}>
                             <span>{this.state.loginError}</span>
@@ -75,46 +71,51 @@ class PatientRegister extends Component {
                         )}
 
                         <form onSubmit={this.handleSubmit}>
-                          <div className="form-group form-focus">
-                            <input
-                              type="text"
+                        <div class="form-group">
+                              <label for="exampleInputEmail1">Fullname</label>
+                            <input type="text" placeholder="enter your fullname"
                               name="name"
                               className="form-control floating"
                             />
-                            <label className="focus-label">Name</label>
+                            
                           </div>
-                          <div className="form-group form-focus">
+                          <div class="form-group">
+                              <label for="exampleInputEmail1">Mobile Number</label>
                             <input
-                              type="text"
+                              type="text" placeholder="enter your mobile number"
                               name="phone"
                               className="form-control floating"
                             />
-                            <label className="focus-label">Mobile Number</label>
+                           
                           </div>
-                          <div className="form-group form-focus">
-                            <input
+                          <div class="form-group">
+                              <label for="exampleInputEmail1">Create Password</label>
+                            <input placeholder="enter atleast 6 character password"
                               type="password"
                               name="password"
                               className="form-control floating"
                             />
-                            <label className="focus-label">
-                              Create Password
-                            </label>
+                           
                           </div>
-
-                          <button
-                            className="btn btn-primary btn-block btn-lg login-btn"
-                            type="submit"
-                          >
-                            Signup
-                          </button>
+                          <div class="form-group">
+                              <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
+                           </div>
+                           <div class="col-md-12 text-center ">
+                              <button type="submit" class=" btn btn-block mybtn tx-tfm book-btn">Signup</button>
+                           </div>
+                           <div class="col-md-12 ">
+                              <div class="login-or">
+                                 <hr class="hr-or"/>
+                                 <span class="span-or">or</span>
+                              </div>
+                           </div>
+                           
+                           <div class="form-group">
+                              <p class="text-center">Already have a account? <a href="#" id="signup" class="text-primary">Sign In here</a></p>
+                           </div>
                         </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          </div>
+           
           </Modal.Body>
         </Modal>
       </>
