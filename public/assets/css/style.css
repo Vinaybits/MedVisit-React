@@ -2256,16 +2256,34 @@ html.menu-opened body {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+	
+	margin-top:-30px;
 }	
 .search-box .form-control {
     border: 1px solid #ccc;
     box-shadow: inset 0 0px 0px rgba(0,0,0,.075);
     border-radius: 5px;
-    padding-left: 35px;
+    padding-left: 10px;
+	margin-top: -4px;
+	max-height: 20px;
+}
+.search-box .search-date {
+    border: 1px solid #ccc;
+    box-shadow: inset 0 0px 0px rgba(0,0,0,.075);
+    border-radius: 5px;
+	-ms-flex: 0 0 180px;
+    flex: 0 0 180px;
+    position: relative;
+    width: 160px;
+	height: 40px;
+	margin-top: 16px;
+	background-color: white;
+	padding:5px;
+
 }
 .search-box .search-location {
-    -ms-flex: 0 0 240px;
-    flex: 0 0 240px;
+    -ms-flex: 0 0 220px;
+    flex: 0 0 220px;
     margin-right: 12px;
     position: relative;
     width: 240px;
@@ -2287,7 +2305,12 @@ html.menu-opened body {
     width: 46px;
     -ms-flex: 0 0 46px;
     flex: 0 0 46px;
-    height: 46px;
+    height: 40px;
+    margin-top: 16px;
+    margin-left: 10px;
+}
+.search-btn:hover{
+	background-color:#0DDDA4;
 }
 .search-box .search-btn span {
 	display: none;

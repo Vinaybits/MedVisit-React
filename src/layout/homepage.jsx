@@ -11,6 +11,7 @@ const Homepage = () => {
       <Speciality_Section />
       <Doc_section />
       <Mobile_section />
+      
     </>
   );
 };

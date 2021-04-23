@@ -219,15 +219,9 @@ class Search_section extends Component {
 
               <div className="search-box">
                 <form onSubmit={this.handleSubmit}>
-                  <div className="form-group search-info">
-                    <Autocomplete
-                      style={{
-                        width: 300,
-                        height: "10",
-                        marginLeft: 2,
-                        marginTop: -20,
-                        paddingTop: 0,
-                      }}
+                  <div className="form-group search-location">
+                    <Autocomplete style={{width:"220px"}}
+                      
                       id="doctor-name"
                       options={
                         this.state.fields["searchLocations"]
@@ -258,13 +252,7 @@ class Search_section extends Component {
 
                   <div className="form-group search-info">
                     <Autocomplete
-                      style={{
-                        width: 400,
-                        height: "10",
-                        marginLeft: 2,
-                        marginTop: -20,
-                        paddingTop: 0,
-                      }}
+                     
                       id="doctor-name"
                       options={
                         this.state.fields["conditionsAndSpecialities"]
@@ -294,8 +282,9 @@ class Search_section extends Component {
                       Ex : Dental or Sugar Check up etc
                     </span>
                   </div>
-                  <div className="form-group">
+                  <div className="form-group search-date">
                     <DatePicker
+                    
                       onChange={this.onChange}
                       value={this.state.value}
                       minDate={new Date()}
@@ -305,11 +294,7 @@ class Search_section extends Component {
                   <button
                     type="submit"
                     className="btn btn-primary search-btn"
-                    style={{
-                      marginLeft: "10px",
-                      height: "40px",
-                      marginTop: "-5px",
-                    }}
+                   
                     disabled={
                       this.state.selectedConditions.length === 0 &&
                       this.state.searchLocation === ""
