@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import HomeService from "./home.service";
-import '../components/patient.css'
+import "../components/patient.css";
 
 class PatientLogin extends Component {
   constructor(props) {
@@ -34,21 +34,28 @@ class PatientLogin extends Component {
       phone: e.target.elements["phone"].value,
       password: e.target.elements["password"].value,
     };
-    //const body = new FormData(event.target);
-    try {
-      this.homeService.userAuthenticate(body).then((response) => {
-        if (response.status === 200) {
-          console.log(response.data);
-          this.props.onChangeValue(response.data);
-          this.setState({ userLoggedIn: true });
-        } else if (response.status === 400) {
-          this.setState({ loginError: response.data.message });
-        } else {
-          this.setState({ loginError: "Error Occurred, Please try later" });
-        }
-      });
-    } catch (error) {
-      console.error(error);
+    console.log(body.phone);
+    console.log(body.password);
+    if (!body.phone || !body.password) {
+      this.setState({ loginError: "Please Enter Correct details" });
+    } else {
+      //const body = new FormData(event.target);
+      try {
+        this.homeService.userAuthenticate(body).then((response) => {
+          if (response.status === 200) {
+            console.log(response);
+            console.log(response.data);
+            this.props.onChangeValue(response.data);
+            this.setState({ userLoggedIn: true });
+          } else if (response.status === 400) {
+            this.setState({ loginError: response.data.message });
+          } else {
+            this.setState({ loginError: "Error Occurred, Please try later" });
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 
@@ -63,7 +70,6 @@ class PatientLogin extends Component {
 
     return (
       <>
-     
         <Modal
           show={this.props.show}
           onHide={() => {
@@ -72,50 +78,67 @@ class PatientLogin extends Component {
           }}
         >
           <Modal.Header closeButton>
-            <Modal.Title style={{textAlign:"center"}}>
-              <span style={{textAlign:"center"}}>Login</span>
-              </Modal.Title>
+            <Modal.Title style={{ textAlign: "center" }}>
+              <span style={{ textAlign: "center" }}>Login</span>
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          <div class="myform form ">
-					 
-          
-                        {this.state.loginError && (
-                          <div style={{ color: "#B31E6F" }}>
-                            <span>{this.state.loginError}</span>
-                          </div>
-                        )}
-                        <form onSubmit={this.handleSubmit}>
-                        <div class="form-group">
-                              <label for="exampleInputEmail1">Mobile Number</label>
-                            <input id="phone"  type="phone"   name="phone" className="form-control floating" />
-                        </div>
-                           
-                        <div class="form-group">
-                              <label for="exampleInputEmail1">Password</label>
-                            <input id="password" type="password"  name="password"  className="form-control floating" />
-                            
-                          </div>
-                          <div class="form-group">
-                              <p class="text-center">By signing in you accept our <a href="#">Terms Of Use</a></p>
-                           </div>
-                           <div class="col-md-12 text-center ">
-                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
-                           </div>
-                           <div class="col-md-12 ">
-                              <div class="login-or">
-                                 <hr class="hr-or"/>
-                                 <span class="span-or">or</span>
-                              </div>
-                           </div>
-                           
-                           <div class="form-group">
-                              <p class="text-center">Don't have account? <a href="#" id="signup" class="text-info">Sign up here</a></p>
-                           </div>
-                        </form>
-                    
+            <div class="myform form ">
+              {this.state.loginError && (
+                <div style={{ color: "#B31E6F" }}>
+                  <span>{this.state.loginError}</span>
+                </div>
+              )}
+              <form onSubmit={this.handleSubmit}>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Mobile Number</label>
+                  <input
+                    id="phone"
+                    type="phone"
+                    name="phone"
+                    className="form-control floating"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Password</label>
+                  <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    className="form-control floating"
+                  />
+                </div>
+                <div class="form-group">
+                  <p class="text-center">
+                    By signing in you accept our <a href="#">Terms Of Use</a>
+                  </p>
+                </div>
+                <div class="col-md-12 text-center ">
+                  <button
+                    type="submit"
+                    class=" btn btn-block mybtn btn-primary tx-tfm"
+                  >
+                    Login
+                  </button>
+                </div>
+                <div class="col-md-12 ">
+                  <div class="login-or">
+                    <hr class="hr-or" />
+                    <span class="span-or">or</span>
                   </div>
-           
+                </div>
+
+                <div class="form-group">
+                  <p class="text-center">
+                    Don't have account?{" "}
+                    <a href="#" id="signup" class="text-info">
+                      Sign up here
+                    </a>
+                  </p>
+                </div>
+              </form>
+            </div>
           </Modal.Body>
         </Modal>
       </>

@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import HomeService from "./home.service";
 
 import { Modal } from "react-bootstrap";
-import '../components/patient.css'
+import "../components/patient.css";
 
 class PatientRegister extends Component {
   constructor(props) {
@@ -31,20 +31,25 @@ class PatientRegister extends Component {
       phone: e.target.elements["phone"].value,
       password: e.target.elements["password"].value,
     };
-    try {
-      this.homeService.registerPatient(body).then((response) => {
-        if (response.status === 200) {
-          console.log(response.data);
-          this.props.onChangeValue(response.data);
-          this.setState({ userLoggedIn: true });
-        } else if (response.status === 400) {
-          this.setState({ loginError: response.data.message });
-        } else {
-          this.setState({ loginError: "Error Occurred, Please try later" });
-        }
-      });
-    } catch (error) {
-      console.error(error);
+    if (!body.phone || !body.password || !body.name) {
+      this.setState({ loginError: "Please Enter Correct details" });
+    } else {
+      try {
+        this.homeService.registerPatient(body).then((response) => {
+          if (response.status === 200) {
+            console.log(response);
+            console.log(response.data);
+            this.props.onChangeValue(response.data);
+            this.setState({ userLoggedIn: true });
+          } else if (response.status === 400) {
+            this.setState({ loginError: response.data.message });
+          } else {
+            this.setState({ loginError: "Error Occurred, Please try later" });
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 
@@ -63,59 +68,71 @@ class PatientRegister extends Component {
             <Modal.Title>Sign Up</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          <div class="myform form ">
-                        {this.state.loginError && (
-                          <div style={{ color: "#B31E6F" }}>
-                            <span>{this.state.loginError}</span>
-                          </div>
-                        )}
+            <div class="myform form ">
+              {this.state.loginError && (
+                <div style={{ color: "#B31E6F" }}>
+                  <span>{this.state.loginError}</span>
+                </div>
+              )}
 
-                        <form onSubmit={this.handleSubmit}>
-                        <div class="form-group">
-                              <label for="exampleInputEmail1">Fullname</label>
-                            <input type="text" placeholder="enter your fullname"
-                              name="name"
-                              className="form-control floating"
-                            />
-                            
-                          </div>
-                          <div class="form-group">
-                              <label for="exampleInputEmail1">Mobile Number</label>
-                            <input
-                              type="text" placeholder="enter your mobile number"
-                              name="phone"
-                              className="form-control floating"
-                            />
-                           
-                          </div>
-                          <div class="form-group">
-                              <label for="exampleInputEmail1">Create Password</label>
-                            <input placeholder="enter atleast 6 character password"
-                              type="password"
-                              name="password"
-                              className="form-control floating"
-                            />
-                           
-                          </div>
-                          <div class="form-group">
-                              <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
-                           </div>
-                           <div class="col-md-12 text-center ">
-                              <button type="submit" class=" btn btn-block mybtn tx-tfm book-btn">Signup</button>
-                           </div>
-                           <div class="col-md-12 ">
-                              <div class="login-or">
-                                 <hr class="hr-or"/>
-                                 <span class="span-or">or</span>
-                              </div>
-                           </div>
-                           
-                           <div class="form-group">
-                              <p class="text-center">Already have a account? <a href="#" id="signup" class="text-primary">Sign In here</a></p>
-                           </div>
-                        </form>
-          </div>
-           
+              <form onSubmit={this.handleSubmit}>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Fullname</label>
+                  <input
+                    type="text"
+                    placeholder="enter your fullname"
+                    name="name"
+                    className="form-control floating"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Mobile Number</label>
+                  <input
+                    type="text"
+                    placeholder="enter your mobile number"
+                    name="phone"
+                    className="form-control floating"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Create Password</label>
+                  <input
+                    placeholder="enter atleast 6 character password"
+                    type="password"
+                    name="password"
+                    className="form-control floating"
+                  />
+                </div>
+                <div class="form-group">
+                  <p class="text-center">
+                    By signing up you accept our <a href="#">Terms Of Use</a>
+                  </p>
+                </div>
+                <div class="col-md-12 text-center ">
+                  <button
+                    type="submit"
+                    class=" btn btn-block mybtn tx-tfm book-btn"
+                  >
+                    Signup
+                  </button>
+                </div>
+                <div class="col-md-12 ">
+                  <div class="login-or">
+                    <hr class="hr-or" />
+                    <span class="span-or">or</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <p class="text-center">
+                    Already have a account?{" "}
+                    <a href="#" id="signup" class="text-primary">
+                      Sign In here
+                    </a>
+                  </p>
+                </div>
+              </form>
+            </div>
           </Modal.Body>
         </Modal>
       </>
