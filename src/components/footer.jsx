@@ -11,7 +11,7 @@ const Footer = () => {
               <div className="col-lg-3 col-md-6">
                 <div className="footer-widget footer-about">
                   <div className="footer-logo">
-                    <img src={logo} alt="logo" />
+                    <img src={logo} alt="logo" width="200px" />
                   </div>
                   <div className="footer-about-content">
                     <p>
