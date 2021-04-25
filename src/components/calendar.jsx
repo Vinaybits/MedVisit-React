@@ -72,13 +72,21 @@ class Calendar extends Component {
   }
 
   callbackFunction = (slotTime, slotDate) => {
-    this.setState({
-      selectedDoctor: this.props.location.state.doctor,
-      doctorDaysOff: this.props.location.state.doctorDaysOff,
-      selectedSlotTime: slotTime,
-      selectedSlotDate: slotDate,
-      show: true,
-    });
+    if (
+      localStorage &&
+      localStorage["responseData"] &&
+      JSON.parse(localStorage["responseData"]).id
+    ) {
+      this.setState({
+        selectedDoctor: this.props.location.state.doctor,
+        doctorDaysOff: this.props.location.state.doctorDaysOff,
+        selectedSlotTime: slotTime,
+        selectedSlotDate: slotDate,
+        show: true,
+      });
+    } else {
+      this.props.handleClose("login");
+    }
   };
   componentDidMount() {
     this.getDoctorCalendarSlotsOff(
@@ -371,48 +379,14 @@ class Calendar extends Component {
                       <div className="col-md-12">
                         <div className="time-slot">
                           <ul className="clearfix">
-                            <CalendarTimeSlotSection
-                              parentCallBack={this.callbackFunction}
-                              slotsOff={this.state.doctorSlotsOff}
-                              dayOff={this.isDayOff(this.state.datesInRange[0])}
-                              date={this.state.datesInRange[0]}
-                            />
-                            <CalendarTimeSlotSection
-                              parentCallBack={this.callbackFunction}
-                              slotsOff={this.state.doctorSlotsOff}
-                              dayOff={this.isDayOff(this.state.datesInRange[1])}
-                              date={this.state.datesInRange[1]}
-                            />
-                            <CalendarTimeSlotSection
-                              parentCallBack={this.callbackFunction}
-                              slotsOff={this.state.doctorSlotsOff}
-                              dayOff={this.isDayOff(this.state.datesInRange[2])}
-                              date={this.state.datesInRange[2]}
-                            />
-                            <CalendarTimeSlotSection
-                              parentCallBack={this.callbackFunction}
-                              slotsOff={this.state.doctorSlotsOff}
-                              dayOff={this.isDayOff(this.state.datesInRange[3])}
-                              date={this.state.datesInRange[3]}
-                            />
-                            <CalendarTimeSlotSection
-                              parentCallBack={this.callbackFunction}
-                              slotsOff={this.state.doctorSlotsOff}
-                              dayOff={this.isDayOff(this.state.datesInRange[4])}
-                              date={this.state.datesInRange[4]}
-                            />
-                            <CalendarTimeSlotSection
-                              parentCallBack={this.callbackFunction}
-                              slotsOff={this.state.doctorSlotsOff}
-                              dayOff={this.isDayOff(this.state.datesInRange[5])}
-                              date={this.state.datesInRange[5]}
-                            />
-                            <CalendarTimeSlotSection
-                              parentCallBack={this.callbackFunction}
-                              slotsOff={this.state.doctorSlotsOff}
-                              dayOff={this.isDayOff(this.state.datesInRange[6])}
-                              date={this.state.datesInRange[6]}
-                            />
+                            {this.state.datesInRange.map((p, i) => (
+                              <CalendarTimeSlotSection
+                                parentCallBack={this.callbackFunction}
+                                slotsOff={this.state.doctorSlotsOff}
+                                dayOff={this.isDayOff(p)}
+                                date={p}
+                              />
+                            ))}
                           </ul>
                         </div>
                       </div>
@@ -435,7 +409,6 @@ class Calendar extends Component {
               savePatientCallBack={this.callbackFunctionPatientModal}
               cancelPatientChangesCallBack={this.cancelPatientChangesCallBack}
               show={this.state.show}
-              patient={this.state.patient}
               slotTime={this.state.selectedSlotTime}
               slotDate={this.state.selectedSlotDate}
             />

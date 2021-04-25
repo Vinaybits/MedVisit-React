@@ -1,7 +1,18 @@
 import React from "react";
-import logo from '../assets/img/logo.png';
+import logo from "../assets/img/logo.png";
 
-const Footer = () => {
+const Footer = (props) => {
+  const handleClose = (str) => {
+    if (
+      localStorage &&
+      localStorage["responseData"] &&
+      JSON.parse(localStorage["responseData"]).id
+    ) {
+      window.scrollTo(0, 0);
+    } else {
+      props.handleClose(str);
+    }
+  };
   return (
     <>
       <footer className="footer">
@@ -51,16 +62,21 @@ const Footer = () => {
                 <div className="footer-widget footer-menu">
                   <h2 className="footer-title">For Patients</h2>
                   <ul>
-                   
                     <li>
-                      <a href="/patient/login">
+                      <span
+                        className="login"
+                        onClick={() => handleClose("login")}
+                      >
                         <i className="fas fa-angle-double-right"></i> Login
-                      </a>
+                      </span>
                     </li>
                     <li>
-                      <a href="/patient/register">
+                      <span
+                        className="login"
+                        onClick={() => handleClose("register")}
+                      >
                         <i className="fas fa-angle-double-right"></i> Register
-                      </a>
+                      </span>
                     </li>
                     <li>
                       <a href="/">
@@ -70,7 +86,8 @@ const Footer = () => {
                     </li>
                     <li>
                       <a href="/">
-                        <i className="fas fa-angle-double-right"></i> Request Appointment
+                        <i className="fas fa-angle-double-right"></i> Request
+                        Appointment
                       </a>
                     </li>
                   </ul>
@@ -81,11 +98,10 @@ const Footer = () => {
                 <div className="footer-widget footer-menu">
                   <h2 className="footer-title">For Doctors</h2>
                   <ul>
-                   
-
                     <li>
                       <a href="doctor-dashboard.html">
-                        <i className="fas fa-angle-double-right"></i> Request Demo
+                        <i className="fas fa-angle-double-right"></i> Request
+                        Demo
                       </a>
                     </li>
                   </ul>

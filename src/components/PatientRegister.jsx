@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { Redirect } from "react-router-dom";
 import HomeService from "./home.service";
+import { Spinner } from "react-bootstrap";
 
 import { Modal } from "react-bootstrap";
 import "../components/patient.css";
@@ -17,22 +18,35 @@ class PatientRegister extends Component {
       email: "",
       phone: "",
       userLoggedIn: false,
+      isLoading: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.homeService = new HomeService();
+    this.clearError = this.clearError.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+
+  clearError() {
+    this.setState({ loginError: "" });
+  }
+
+  handleClose(str) {
+    if (str === "login") this.props.handleClose("login");
+    else if (str === "closeregister") this.props.handleClose("closeregister");
   }
 
   handleSubmit(e) {
     e.preventDefault();
-
+    this.setState({ isLoading: true });
     const body = {
       name: e.target.elements["name"].value,
       phone: e.target.elements["phone"].value,
       password: e.target.elements["password"].value,
     };
     if (!body.phone || !body.password || !body.name) {
-      this.setState({ loginError: "Please Enter Correct details" });
+      this.setState({ loginError: "Please Check your details" });
+      this.setState({ isLoading: false });
     } else {
       try {
         this.homeService.registerPatient(body).then((response) => {
@@ -41,10 +55,16 @@ class PatientRegister extends Component {
             console.log(response.data);
             this.props.onChangeValue(response.data);
             this.setState({ userLoggedIn: true });
+            this.setState({ isLoading: false });
+            this.props.handleClose("closeregister");
           } else if (response.status === 400) {
-            this.setState({ loginError: response.data.message });
+            this.setState({
+              loginError: "Wrong Credentials. Please try again.",
+            });
+            this.setState({ isLoading: false });
           } else {
             this.setState({ loginError: "Error Occurred, Please try later" });
+            this.setState({ isLoading: false });
           }
         });
       } catch (error) {
@@ -54,16 +74,15 @@ class PatientRegister extends Component {
   }
 
   render() {
-    if (
-      localStorage &&
-      localStorage["responseData"] &&
-      JSON.parse(localStorage["responseData"]).id
-    ) {
-      return <Redirect to={{ pathname: "/", state: { userLoggedIn: true } }} />;
-    }
     return (
       <>
-        <Modal show={this.props.show} onHide={this.props.handleClose}>
+        <Modal
+          show={this.props.show}
+          onHide={() => {
+            this.handleClose("closeregister");
+            this.clearError();
+          }}
+        >
           <Modal.Header closeButton>
             <Modal.Title>Sign Up</Modal.Title>
           </Modal.Header>
@@ -80,7 +99,7 @@ class PatientRegister extends Component {
                   <label for="exampleInputEmail1">Fullname</label>
                   <input
                     type="text"
-                    placeholder="enter your fullname"
+                    placeholder="Enter your Full Name"
                     name="name"
                     className="form-control floating"
                   />
@@ -89,7 +108,7 @@ class PatientRegister extends Component {
                   <label for="exampleInputEmail1">Mobile Number</label>
                   <input
                     type="text"
-                    placeholder="enter your mobile number"
+                    placeholder="Enter your Mobile Number"
                     name="phone"
                     className="form-control floating"
                   />
@@ -97,7 +116,7 @@ class PatientRegister extends Component {
                 <div class="form-group">
                   <label for="exampleInputEmail1">Create Password</label>
                   <input
-                    placeholder="enter atleast 6 character password"
+                    placeholder="Enter Atleast 6 Characters Password"
                     type="password"
                     name="password"
                     className="form-control floating"
@@ -113,7 +132,22 @@ class PatientRegister extends Component {
                     type="submit"
                     class=" btn btn-block mybtn tx-tfm book-btn"
                   >
-                    Signup
+                    {this.state.isLoading ? (
+                      <span>
+                        Signing Up{" "}
+                        <Spinner
+                          style={{
+                            width: "1.2rem",
+                            height: "1.2rem",
+                            marginLeft: "5px",
+                          }}
+                          animation="border"
+                          role="status"
+                        ></Spinner>
+                      </span>
+                    ) : (
+                      "Sign Up"
+                    )}
                   </button>
                 </div>
                 <div class="col-md-12 ">
@@ -126,9 +160,12 @@ class PatientRegister extends Component {
                 <div class="form-group">
                   <p class="text-center">
                     Already have a account?{" "}
-                    <a href="#" id="signup" class="text-primary">
+                    <span
+                      onClick={() => this.handleClose("login")}
+                      style={{ color: "rgb(60,168,247)", cursor: "pointer" }}
+                    >
                       Sign In here
-                    </a>
+                    </span>
                   </p>
                 </div>
               </form>
