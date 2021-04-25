@@ -14,6 +14,8 @@ import CheckoutAppointment from "./components/checkout_appointment";
 import PatientLogin from "./components/PatientLogin";
 import PatientRegister from "./components/PatientRegister";
 import Doctor_Profile from "./layout/doctor_profile";
+import Footer from "./components/footer";
+import { Modal } from "react-bootstrap";
 
 class App extends Component {
 
@@ -26,17 +28,28 @@ class App extends Component {
             phone: "",
             userId: "",
             showlogin: false,
-            showregister: false
+            showregister: false,
+            showlogout: false,
+            url:""
         }
         this.handleClose = this.handleClose.bind(this);
   }
-    handleClose(str) {
-        if (str === "login")
-        {
-            this.setState({ showlogin: !this.state.showlogin });
-        }
-        else
-            this.setState({ showregister: !this.state.showregister })
+    handleClose(str, url) {
+            window.scrollTo(0, 0)
+            if (str === "login") {
+                this.setState({ showlogin: true });
+                this.setState({ showregister: false })
+            }
+            else if (str === "closelogin") {
+                this.setState({ showlogin: false });
+            }
+            else if (str === "register") {
+                this.setState({ showregister: true });
+                this.setState({ showlogin: false })
+            }
+            else if (str === "closeregister") {
+                this.setState({ showregister: false })
+            }
     }
 
     componentDidMount(){
@@ -67,7 +80,9 @@ class App extends Component {
     }
 
     logOut() {
+        this.setState({showlogout:true})
         reactLocalStorage.remove('responseData');
+        
     }
 
     render() {
@@ -77,7 +92,7 @@ class App extends Component {
                     <Router>
                     <nav className="navbar navbar-expand-lg header-nav">
 					<div className="navbar-header">
-						<a id="mobile_btn" href="javascript:void(0);">
+						<a id="mobile_btn" href="">
 							<span className="bar-icon">
 								<span></span>
 								<span></span>
@@ -93,7 +108,7 @@ class App extends Component {
 							<a href="index-2.html" className="menu-logo">
 								<img src={logo} className="img-fluid" alt="Logo"/>
 							</a>
-							<a id="menu_close" className="menu-close" href="javascript:void(0);">
+							<a id="menu_close" className="menu-close" href="">
 								<i className="fas fa-times"></i>
 							</a>
 						</div>
@@ -110,7 +125,9 @@ class App extends Component {
 							</div>
 						</li>
 					
-                                {this.state.firstName ? (<li className="nav-item dropdown has-arrow logged-item">
+                                {localStorage &&
+      localStorage["responseData"] &&
+      JSON.parse(localStorage["responseData"]).id ? (<li className="nav-item dropdown has-arrow logged-item">
 							    <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
 								<span className="user-img">
 									<img className="rounded-circle" src={userprofile} width="31" alt={this.state.firstName}/>
@@ -147,18 +164,23 @@ class App extends Component {
 					</ul>
                         </nav>
                         
-                        <PatientLogin show={this.state.showlogin} handleClose={() => this.handleClose("login")} onChangeValue={(event) => this.updateLoggedInUser(event)} />
-                        <PatientRegister show={this.state.showregister} handleClose={() => this.handleClose("register")} onChangeValue={(event) => this.updateLoggedInUser(event)} />
-                       
+                        <PatientLogin show={this.state.showlogin} handleClose={(str) => this.handleClose(str)} onChangeValue={(event) => this.updateLoggedInUser(event)} />
+                        <PatientRegister show={this.state.showregister} handleClose={(str) => this.handleClose(str)} onChangeValue={(event) => this.updateLoggedInUser(event)} />
+                        <Modal show={this.state.showlogout}>
+                            <Modal.Body>
+                                Successfully Logged out!
+                            </Modal.Body>
+
+                        </Modal>
                         <Switch>
                             <Route exact path={"/"} render ={(props) => <Master_layout {...props}/>}/>
-                            <Route path={'/appointments/booking'} render={(props) => <Calendar {...props}/>}/>
+                            <Route path={'/appointments/booking'} render={(props) => <Calendar handleClose={(str) => this.handleClose(str)} {...props}/>}/>
                             <Route path={'/doctor/search'} render={(props) => <DoctorSearchResult {...props}/>}/>
                             <Route exact path="/appointments/checkout" component={CheckoutAppointment}/>
                             <Route path={'/doctor/profile'} render={(props) => <Doctor_Profile {...props}/>}/>
                         </Switch>
 
-
+                        <Footer handleClose={(str) => this.handleClose(str)}/>
                     </Router>
                 </div>
             </>

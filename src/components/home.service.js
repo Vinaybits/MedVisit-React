@@ -180,4 +180,19 @@ export default class HomeService {
             console.log(error);
         });
     }
+
+    getAllDoctors = () => {
+        const URL = `${devurl}/api/v1/doctors`
+        return axios({
+            url: URL,
+            method: 'GET',
+            params: []
+        }).then(response => {
+            if(response.status === 200){
+                return response;
+            }
+        }).catch(error => {
+            console.log(error);
+        });
+    }
 }
