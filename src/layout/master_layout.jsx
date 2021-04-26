@@ -21,7 +21,7 @@ class MasterLayout extends Component {
       }
     }
     return <>{currentView()}
-    <Footer/>
+    
     </>;
   }
 }
