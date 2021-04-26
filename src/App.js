@@ -99,7 +99,7 @@ class App extends Component {
 								<span></span>
 							</span>
 						</a>
-						<a href="index-2.html" className="navbar-brand logo">
+						<a href="/" className="navbar-brand logo">
 							<img src={logo} className="img-fluid" alt="Logo"/>
 						</a>
 					</div>
@@ -180,7 +180,7 @@ class App extends Component {
                             <Route path={'/doctor/profile'} render={(props) => <Doctor_Profile {...props}/>}/>
                         </Switch>
 
-                        <Footer handleClose={(str) => this.handleClose(str)}/>
+                        
                     </Router>
                 </div>
             </>

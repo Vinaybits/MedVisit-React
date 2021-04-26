@@ -21,7 +21,7 @@ class MasterLayout extends Component {
       }
     }
     return <>{currentView()}
-    
+    <Footer handleClose={(str) => this.handleClose(str)}/>
     </>;
   }
 }

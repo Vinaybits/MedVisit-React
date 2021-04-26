@@ -50,7 +50,7 @@ class Doc_section extends Component {
 								<div class="profile-widget">
 									<div class="doc-img">
 										<a href="doctor-profile.html">
-											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-01.jpg"/>
+											<img class="img-fluid" alt="User Image" src={doc_img1}/>
 										</a>
 										<a href="javascript:void(0)" class="fav-btn">
 											<i class="far fa-bookmark"></i>
@@ -62,25 +62,15 @@ class Doc_section extends Component {
 											<i class="fas fa-check-circle verified"></i>
 										</h3>
 										<p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
-										<div class="rating">
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<span class="d-inline-block average-rating">(17)</span>
-										</div>
+									
 										<ul class="available-info">
 											<li>
 												<i class="fas fa-map-marker-alt"></i> Florida, USA
 											</li>
 											<li>
-												<i class="far fa-clock"></i> Available on Fri, 22 Mar
+												<i class="far fa-clock"></i> Available at Clinic Name
 											</li>
-											<li>
-												<i class="far fa-money-bill-alt"></i> $300 - $1000 
-												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-											</li>
+										
 										</ul>
 										<div class="row row-sm">
 											<div class="col-6">
@@ -93,12 +83,10 @@ class Doc_section extends Component {
 									</div>
 								</div>
 							
-						
-							
-								<div class="profile-widget">
+                <div class="profile-widget">
 									<div class="doc-img">
 										<a href="doctor-profile.html">
-											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-02.jpg"/>
+											<img class="img-fluid" alt="User Image" src={doc_img1}/>
 										</a>
 										<a href="javascript:void(0)" class="fav-btn">
 											<i class="far fa-bookmark"></i>
@@ -106,29 +94,19 @@ class Doc_section extends Component {
 									</div>
 									<div class="pro-content">
 										<h3 class="title">
-											<a href="doctor-profile.html">Darren Elder</a> 
+											<a href="doctor-profile.html">Ruby Perrin</a> 
 											<i class="fas fa-check-circle verified"></i>
 										</h3>
-										<p class="speciality">BDS, MDS - Oral & Maxillofacial Surgery</p>
-										<div class="rating">
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star"></i>
-											<span class="d-inline-block average-rating">(35)</span>
-										</div>
+										<p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
+									
 										<ul class="available-info">
 											<li>
-												<i class="fas fa-map-marker-alt"></i> Newyork, USA
+												<i class="fas fa-map-marker-alt"></i> Florida, USA
 											</li>
 											<li>
-												<i class="far fa-clock"></i> Available on Fri, 22 Mar
+												<i class="far fa-clock"></i> Available at Clinic Name
 											</li>
-											<li>
-												<i class="far fa-money-bill-alt"></i> $50 - $300 
-												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-											</li>
+										
 										</ul>
 										<div class="row row-sm">
 											<div class="col-6">
@@ -140,13 +118,11 @@ class Doc_section extends Component {
 										</div>
 									</div>
 								</div>
-							
-						
-								
-								<div class="profile-widget">
+
+                <div class="profile-widget">
 									<div class="doc-img">
 										<a href="doctor-profile.html">
-											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-03.jpg"/>
+											<img class="img-fluid" alt="User Image" src={doc_img1}/>
 										</a>
 										<a href="javascript:void(0)" class="fav-btn">
 											<i class="far fa-bookmark"></i>
@@ -154,29 +130,19 @@ class Doc_section extends Component {
 									</div>
 									<div class="pro-content">
 										<h3 class="title">
-											<a href="doctor-profile.html">Deborah Angel</a> 
+											<a href="doctor-profile.html">Ruby Perrin</a> 
 											<i class="fas fa-check-circle verified"></i>
 										</h3>
-										<p class="speciality">MBBS, MD - General Medicine, DNB - Cardiology</p>
-										<div class="rating">
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star"></i>
-											<span class="d-inline-block average-rating">(27)</span>
-										</div>
+										<p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
+									
 										<ul class="available-info">
 											<li>
-												<i class="fas fa-map-marker-alt"></i> Georgia, USA
+												<i class="fas fa-map-marker-alt"></i> Florida, USA
 											</li>
 											<li>
-												<i class="far fa-clock"></i> Available on Fri, 22 Mar
+												<i class="far fa-clock"></i> Available at Clinic Name
 											</li>
-											<li>
-												<i class="far fa-money-bill-alt"></i> $100 - $400 
-												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-											</li>
+										
 										</ul>
 										<div class="row row-sm">
 											<div class="col-6">
@@ -189,7 +155,6 @@ class Doc_section extends Component {
 									</div>
 								</div>
 							
-						
 							
 								
 							</div>
