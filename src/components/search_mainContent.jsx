@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import doctor1 from '../assets/img/doctors/doctor-01.jpg'
+import doctor1 from '../assets/img/doctors/doctor-thumb-01.jpg'
 import dental_sp from '../assets/img/specialities/dental_speciality.png'
 import {Link, Redirect} from "react-router-dom";
 import HomeService from "./home.service";
@@ -90,7 +90,7 @@ class SearchMainContent extends Component {
 
 		return (
 			<>
-				<Breadcrumb view={'search'}/>
+				
 
 				<div class="content">
 					<div class="container-fluid">
@@ -174,7 +174,7 @@ class SearchMainContent extends Component {
 							</div>
 
 							<div class="col-md-12 col-lg-8 col-xl-9">
-
+							
 								{(this.props.doctors.length > 0) && this.props.doctors.map(doctor => (
 
 									<div class="card">
@@ -189,32 +189,33 @@ class SearchMainContent extends Component {
 													<div class="doc-info-cont">
 														<h4 class="doc-name"><a
 															href="doctor-profile.html">{doctor.name}</a></h4>
+															<p class="doc-speciality">MDS - Periodontology and Oral Implantology, BDS</p>
 
 														<h5 class="doc-department">
 															<img src={dental_sp} class="img-fluid"
-																 alt="Speciality"/>{doctor.speciality}</h5>
+																 alt="Speciality"/>{doctor.speciality}
+													    </h5>
+														<hr/>
+														<button type="button" class="btn btn-outline-info" onClick={this.getDoctorCalendarOffDaysAndNonAvailableSlots(doctor)}>Book Appointment</button>
 													</div>
 												</div>
 												<div class="doc-info-right">
+												<p class="doc-speciality">Available Slots - 11/11/1111 </p>
 													<div class="clini-infos">
-														<ul>
-
-															<li><i class="fas fa-map-marker-alt"></i> {doctor.city}, {doctor.state}</li>
-															<li><i class="far fa-money-bill-alt"></i> $300 - $1000 <i
-																class="fas fa-info-circle" data-toggle="tooltip"
-																title="Lorem Ipsum"></i></li>
-														</ul>
+													<button type="button" class="btn btn-outline-warning btn-sm">8:30-9:00am</button>
+													<button type="button" class="btn btn-outline-warning btn-sm">9:30-10:00am</button>
+													<button type="button" class="btn btn-outline-warning btn-sm">12:00-12:30pm</button>
+													<button type="button" class="btn btn-outline-warning btn-sm">1:00-1:30pm</button>
+													<button type="button" class="btn btn-outline-warning btn-sm">12:00-12:30pm</button>
+													<button type="button" class="btn btn-outline-warning btn-sm">1:00-1:30pm</button>
 													</div>
-													<div class="clinic-booking">
-														<button className="clinic-booking"
-																onClick={this.viewDoctorProfile(doctor)}>
-															<span>View Profile</span>
-														</button>
-														<button className="apt-btn book-btn"
-																onClick={this.getDoctorCalendarOffDaysAndNonAvailableSlots(doctor)}>
-															<span className="apt-btn book-btn">Book Appointment</span>
-														</button>
-													</div>
+													
+													<div >
+												{/* <button type="button" class="btn btn-outline-info" onClick={this.viewDoctorProfile(doctor)}>View Profile</button> */}
+												{/* <button type="button" class="btn btn-outline-info" onClick={this.getDoctorCalendarOffDaysAndNonAvailableSlots(doctor)}>Book Appointment</button> */}
+												<button type="button" class="btn btn-light btn-sm">View more available slots</button>
+											</div>
+												
 												</div>
 											</div>
 										</div>

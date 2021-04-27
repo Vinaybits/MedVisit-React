@@ -10,6 +10,7 @@ const Search = (props) => {
         noOfMatches={props.doctors.length}
         searchLocation={props.searchLocation}
         searchConditions={props.searchConditions}
+        view={"Search"}
       />
       <SearchMainContent doctors={props.doctors} />
     </>

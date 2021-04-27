@@ -2963,9 +2963,9 @@ html.menu-opened body {
 }
 .doc-info-right {
   margin-left: auto;
-  -ms-flex: 0 0 200px;
-  flex: 0 0 200px;
-  max-width: 200px;
+  -ms-flex: 0 0 240px;
+  flex: 0 0 240px;
+  max-width: 300px;
 }
 .doctor-img {
   -ms-flex: 0 0 150px;
