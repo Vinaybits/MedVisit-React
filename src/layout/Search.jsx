@@ -1,6 +1,6 @@
 import React from "react";
-import Breadcrumb from "../components/breadcrumb";
-import SearchMainContent from "../components/search_mainContent";
+import Breadcrumb from "../components/Breadcrumb";
+import SearchMainContent from "../components/SearchMainContent";
 
 const Search = (props) => {
   return (

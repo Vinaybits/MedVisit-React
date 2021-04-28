@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import doc_img2 from "../assets/img/doctors/doctor-02.jpg";
-import Footer from "./footer";
+import Footer from "./Footer";
 import cardiologist_sp from "../assets/img/specialities/cardiologist_sp.png";
-
-import CalendarDaySection from "./calendar_day_section";
-import CalendarTimeSlotSection from "./calendar_time_slot_section";
+import CalendarDaySection from "./CalendarDaySection";
+import CalendarTimeSlotSection from "./CalendarTimeSlotSelection";
 import { Redirect } from "react-router-dom";
 import HomeService from "./home.service";
 import { reactLocalStorage } from "reactjs-localstorage";
-
+import { GlobalContext } from "../context";
 import PropTypes from "prop-types";
-import Breadcrumb from "./breadcrumb";
-import RegistrationConfirmationPopup from "./registration_confirmation_popup";
+import Breadcrumb from "./Breadcrumb";
+import RegistrationConfirmationPopup from "./RegistrationConfirmationPopup";
 
 class Calendar extends Component {
   static propTypes = {
@@ -19,7 +18,7 @@ class Calendar extends Component {
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
   };
-
+  static contextType = GlobalContext;
   months = [
     "JAN",
     "FEB",
@@ -37,19 +36,6 @@ class Calendar extends Component {
 
   constructor(props) {
     super(props);
-    let user = reactLocalStorage.getObject("responseData");
-
-    let patient = {};
-
-    if (user) {
-      patient = {
-        firstName: user.first_name,
-        lastName: user.last_name,
-        userId: user.id,
-        email: user.email,
-        phone: user.phone,
-      };
-    }
     this.state = {
       selectedDoctor: this.props.location.state.doctor,
       doctorDaysOff: this.props.location.state.doctorDaysOff,
@@ -64,7 +50,13 @@ class Calendar extends Component {
       navigateToCheckoutPage: false,
       show: false,
       email: "",
-      patient: patient,
+      patient: {
+        firstName: null,
+        lastName: null,
+        userId: null,
+        email: null,
+        phone: null,
+      },
       doctorSlotsOff: {},
     };
 
@@ -72,11 +64,7 @@ class Calendar extends Component {
   }
 
   callbackFunction = (slotTime, slotDate) => {
-    if (
-      localStorage &&
-      localStorage["responseData"] &&
-      JSON.parse(localStorage["responseData"]).id
-    ) {
+    if (this.context.firstName) {
       this.setState({
         selectedDoctor: this.props.location.state.doctor,
         doctorDaysOff: this.props.location.state.doctorDaysOff,
@@ -85,7 +73,7 @@ class Calendar extends Component {
         show: true,
       });
     } else {
-      this.props.handleClose("login");
+      this.context.handleClose("login");
     }
   };
   componentDidMount() {
@@ -93,6 +81,19 @@ class Calendar extends Component {
       this.state.datesInRange[0],
       this.state.datesInRange[6]
     );
+  }
+
+  componentDidUpdate() {
+    if (this.state.patient.userId !== this.context.id) {
+      let patient = {
+        firstName: this.context.firstName,
+        lastName: this.context.lastName,
+        userId: this.context.id,
+        email: this.context.email,
+        phone: this.context.phone,
+      };
+      this.setState({ patient: patient });
+    }
   }
 
   getDoctorCalendarSlotsOff(fromDate, toDate) {
@@ -200,9 +201,9 @@ class Calendar extends Component {
     let dateObject2 = new Date(date2);
 
     return (
-      dateObject1.getDate() == dateObject2.getDate() &&
-      dateObject1.getMonth() == dateObject2.getMonth() &&
-      dateObject1.getFullYear() == dateObject2.getFullYear()
+      dateObject1.getDate() === dateObject2.getDate() &&
+      dateObject1.getMonth() === dateObject2.getMonth() &&
+      dateObject1.getFullYear() === dateObject2.getFullYear()
     );
   }
 
@@ -246,17 +247,18 @@ class Calendar extends Component {
   };
 
   render() {
+    console.log(this.state.patient);
     // publish calendar upto sixty days
     let sixtyDaysFromNow = new Date(
       new Date().setDate(new Date().getDate() + 59)
     );
 
-    const { match, location, history } = this.props;
+    const { location } = this.props;
 
     if (
-      location.state == undefined ||
-      location.state == null ||
-      location.state == ""
+      location.state === undefined ||
+      location.state === null ||
+      location.state === ""
     ) {
       return <Redirect to={{ pathname: "/patient/login" }} />;
     }
@@ -280,7 +282,7 @@ class Calendar extends Component {
     }
     return (
       <>
-        <Breadcrumb view={"booking"} />
+        <Breadcrumb view={"Booking"} />
         <div className="content">
           <div className="container">
             <div className="row">

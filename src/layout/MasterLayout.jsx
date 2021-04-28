@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 
-import Homepage from "./homepage";
+import Homepage from "./Homepage";
 class MasterLayout extends Component {
   constructor(props) {
     super(props);
@@ -20,9 +20,12 @@ class MasterLayout extends Component {
         return "";
       }
     }
-    return <>{currentView()}
-    <Footer handleClose={(str) => this.handleClose(str)}/>
-    </>;
+    return (
+      <>
+        {currentView()}
+        <Footer handleClose={(str) => this.context.handleClose(str)} />
+      </>
+    );
   }
 }
 

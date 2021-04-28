@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import HomeService from "./home.service";
 import { Button, Modal } from "react-bootstrap";
 import { reactLocalStorage } from "reactjs-localstorage";
+import { GlobalContext } from "../context";
+
 class RegistrationConfirmationPopup extends Component {
   months = [
     "JAN",
@@ -17,21 +19,9 @@ class RegistrationConfirmationPopup extends Component {
     "NOV",
     "DEC",
   ];
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
-    let user = reactLocalStorage.getObject("responseData");
-
-    let patient = {};
-
-    if (user) {
-      patient = {
-        firstName: user.first_name,
-        lastName: user.last_name,
-        userId: user.id,
-        email: user.email,
-        phone: user.phone,
-      };
-    }
     this.state = {
       selectedDoctor: {},
       doctorDaysOff: {},
@@ -42,10 +32,40 @@ class RegistrationConfirmationPopup extends Component {
       selectedSlotDate: "",
       navigateToCheckoutPage: false,
       show: false,
-      patient: patient,
+      patient: {
+        firstName: null,
+        lastName: null,
+        userId: null,
+        email: null,
+        phone: null,
+      },
     };
 
     this.homeService = new HomeService();
+  }
+
+  // componentDidMount() {
+  //   let patient = {
+  //     firstName: this.context.firstName,
+  //     lastName: this.context.lastName,
+  //     userId: this.context.id,
+  //     email: this.context.email,
+  //     phone: this.context.phone,
+  //   };
+  //   this.setState({ patient: patient });
+  // }
+
+  componentDidUpdate() {
+    if (this.state.patient.userId !== this.context.id) {
+      let patient = {
+        firstName: this.context.firstName,
+        lastName: this.context.lastName,
+        userId: this.context.id,
+        email: this.context.email,
+        phone: this.context.phone,
+      };
+      this.setState({ patient: patient });
+    }
   }
 
   handleClose = (e) => {
@@ -147,6 +167,7 @@ class RegistrationConfirmationPopup extends Component {
     return [year, month, day].join("-");
   };
   render() {
+    console.log(this.state.patient);
     return (
       <>
         <div
@@ -209,7 +230,7 @@ class RegistrationConfirmationPopup extends Component {
                     onChange={this.onEmailChange}
                   />
                   <label className="focus-label">
-                    {this.state.patient.email === "undefined" ? "Email" : ""}
+                    {!this.state.patient.email ? "Email" : ""}
                   </label>
                 </div>
                 <div className="form-group form-focus">

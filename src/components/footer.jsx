@@ -1,16 +1,13 @@
 import React from "react";
 import logo from "../assets/img/logo.png";
-
+import { GlobalContext } from "../context";
 const Footer = (props) => {
+  const context = React.useContext(GlobalContext);
   const handleClose = (str) => {
-    if (
-      localStorage &&
-      localStorage["responseData"] &&
-      JSON.parse(localStorage["responseData"]).id
-    ) {
+    if (context.firstName) {
       window.scrollTo(0, 0);
     } else {
-      props.handleClose(str);
+      context.handleClose(str);
     }
   };
   return (

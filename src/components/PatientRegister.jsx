@@ -1,22 +1,16 @@
 import React, { Component } from "react";
 
-import { Redirect } from "react-router-dom";
 import HomeService from "./home.service";
 import { Spinner } from "react-bootstrap";
-
+import { GlobalContext } from "../context";
 import { Modal } from "react-bootstrap";
 import "../components/patient.css";
 
 class PatientRegister extends Component {
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
     this.state = {
-      firstName: "",
-      lastName: "",
-      gender: "",
-      userId: "",
-      email: "",
-      phone: "",
       userLoggedIn: false,
       isLoading: false,
     };
@@ -32,8 +26,8 @@ class PatientRegister extends Component {
   }
 
   handleClose(str) {
-    if (str === "login") this.props.handleClose("login");
-    else if (str === "closeregister") this.props.handleClose("closeregister");
+    if (str === "login") this.context.handleClose("login");
+    else if (str === "closeregister") this.context.handleClose("closeregister");
   }
 
   handleSubmit(e) {
@@ -53,10 +47,10 @@ class PatientRegister extends Component {
           if (response.status === 200) {
             console.log(response);
             console.log(response.data);
-            this.props.onChangeValue(response.data);
+            this.context.onChangeValue(response.data);
             this.setState({ userLoggedIn: true });
             this.setState({ isLoading: false });
-            this.props.handleClose("closeregister");
+            this.context.handleClose("closeregister");
           } else if (response.status === 400) {
             this.setState({
               loginError: "Wrong Credentials. Please try again.",
@@ -77,7 +71,7 @@ class PatientRegister extends Component {
     return (
       <>
         <Modal
-          show={this.props.show}
+          show={this.context.showregister}
           onHide={() => {
             this.handleClose("closeregister");
             this.clearError();

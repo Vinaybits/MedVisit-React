@@ -1,20 +1,15 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import HomeService from "./home.service";
 import "../components/patient.css";
 import { Spinner } from "react-bootstrap";
+import { GlobalContext } from "../context";
 
 class PatientLogin extends Component {
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
     this.state = {
-      firstName: "",
-      lastName: "",
-      gender: "",
-      userId: "",
-      email: "",
-      phone: "",
       loginError: "",
       userLoggedIn: false,
       isLoading: false,
@@ -31,33 +26,30 @@ class PatientLogin extends Component {
   }
 
   handleClose(str) {
-    if (str === "register") this.props.handleClose("register");
-    else if (str === "closelogin") this.props.handleClose("closelogin");
+    if (str === "register") this.context.handleClose("register");
+    else if (str === "closelogin") this.context.handleClose("closelogin");
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ isLoading: true });
+
     const body = {
       phone: e.target.elements["phone"].value,
       password: e.target.elements["password"].value,
     };
-    console.log(body.phone);
-    console.log(body.password);
+
     if (!body.phone || !body.password) {
       this.setState({ loginError: "Please Check your details." });
       this.setState({ isLoading: false });
     } else {
-      //const body = new FormData(event.target);
       try {
         this.homeService.userAuthenticate(body).then((response) => {
           if (response.status === 200) {
-            console.log(response);
-            console.log(response.data);
-            this.props.onChangeValue(response.data);
+            this.context.updateLoggedInUser(response.data);
             this.setState({ userLoggedIn: true });
             this.setState({ isLoading: false });
-            this.props.handleClose("closelogin");
+            this.context.handleClose("closelogin");
           } else if (response.status === 400) {
             this.setState({
               loginError: "Please enter Valid Mobile Number/Password.",
@@ -78,7 +70,7 @@ class PatientLogin extends Component {
     return (
       <>
         <Modal
-          show={this.props.show}
+          show={this.context.showlogin}
           onHide={() => {
             this.handleClose("closelogin");
             this.clearError();

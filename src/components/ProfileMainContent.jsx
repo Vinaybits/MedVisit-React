@@ -6,7 +6,7 @@ import Cardiologist from "../assets/img/specialities/cardiologist_sp.png";
 import HomeService from "./home.service";
 import { Redirect } from "react-router-dom";
 
-class Profile_MainContent extends Component {
+class ProfileMainContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -103,7 +103,7 @@ class Profile_MainContent extends Component {
                 <div class="doctor-widget">
                   <div class="doc-info-left">
                     <div class="doctor-img">
-                      <img src={doctor1} class="img-fluid" alt="User Image" />
+                      <img src={doctor1} class="img-fluid" alt="User" />
                     </div>
                     <div class="doc-info-cont">
                       <h4 class="doc-name">
@@ -233,4 +233,4 @@ class Profile_MainContent extends Component {
   }
 }
 
-export default Profile_MainContent;
+export default ProfileMainContent;

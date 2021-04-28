@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import icon1 from '../assets/img/specialities/urology_sp.png';
-import icon2 from '../assets/img/specialities/neurology_sp.png';
-import icon3 from '../assets/img/specialities/orthopedic_sp.png';
-import icon4 from '../assets/img/specialities/cardiologist_sp.png';
-import icon5 from '../assets/img/specialities/dental_speciality.png';
+import icon1 from "../assets/img/specialities/urology_sp.png";
+import icon2 from "../assets/img/specialities/neurology_sp.png";
+import icon3 from "../assets/img/specialities/orthopedic_sp.png";
+import icon4 from "../assets/img/specialities/cardiologist_sp.png";
+import icon5 from "../assets/img/specialities/dental_speciality.png";
 
-class Speciality_Section extends Component {
+class SpecialitySection extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -27,11 +27,7 @@ class Speciality_Section extends Component {
                 <div className="specialities-slider slider">
                   <div className="speicality-item text-center">
                     <div className="speicality-img">
-                      <img
-                        src={icon1}
-                        className="img-fluid"
-                        alt="Speciality"
-                      />
+                      <img src={icon1} className="img-fluid" alt="Speciality" />
                       <span>
                         <i className="fa fa-circle" aria-hidden="true"></i>
                       </span>
@@ -41,11 +37,7 @@ class Speciality_Section extends Component {
 
                   <div className="speicality-item text-center">
                     <div className="speicality-img">
-                      <img
-                       src={icon2}
-                        className="img-fluid"
-                        alt="Speciality"
-                      />
+                      <img src={icon2} className="img-fluid" alt="Speciality" />
                       <span>
                         <i className="fa fa-circle" aria-hidden="true"></i>
                       </span>
@@ -55,11 +47,7 @@ class Speciality_Section extends Component {
 
                   <div className="speicality-item text-center">
                     <div className="speicality-img">
-                      <img
-                       src={icon3}
-                        className="img-fluid"
-                        alt="Speciality"
-                      />
+                      <img src={icon3} className="img-fluid" alt="Speciality" />
                       <span>
                         <i className="fa fa-circle" aria-hidden="true"></i>
                       </span>
@@ -69,11 +57,7 @@ class Speciality_Section extends Component {
 
                   <div className="speicality-item text-center">
                     <div className="speicality-img">
-                      <img
-                        src={icon4}
-                        className="img-fluid"
-                        alt="Speciality"
-                      />
+                      <img src={icon4} className="img-fluid" alt="Speciality" />
                       <span>
                         <i className="fa fa-circle" aria-hidden="true"></i>
                       </span>
@@ -83,11 +67,7 @@ class Speciality_Section extends Component {
 
                   <div className="speicality-item text-center">
                     <div className="speicality-img">
-                      <img
-                       src={icon5}
-                        className="img-fluid"
-                        alt="Speciality"
-                      />
+                      <img src={icon5} className="img-fluid" alt="Speciality" />
                       <span>
                         <i className="fa fa-circle" aria-hidden="true"></i>
                       </span>
@@ -104,4 +84,4 @@ class Speciality_Section extends Component {
   }
 }
 
-export default Speciality_Section;
+export default SpecialitySection;

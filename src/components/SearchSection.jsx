@@ -1,20 +1,12 @@
 import React, { Component } from "react";
 import "./component.css";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import {
-  TextField,
-  Accordion,
-  Radio,
-  Grid,
-  withStyles,
-} from "@material-ui/core";
-import yellow from "@material-ui/core/colors/yellow";
-import { red } from "@material-ui/core/colors";
+import { TextField } from "@material-ui/core";
 import HomeService from "./home.service";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import DatePicker from "react-date-picker";
 
-class Search_section extends Component {
+class SearchSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -126,11 +118,10 @@ class Search_section extends Component {
 
   //getDoctorsByTreatingCondition
   getDoctorsByTreatingCondition = (event, value) => {
-    this.homeService
-      .getDoctorsByTreatingCondition(this.state.selectedConditions)
-      .then((response) => {
+    console.log(this.state.selectedConditions);
+    if (this.state.selectedConditions.length <= 0) {
+      this.homeService.getAllDoctors().then((response) => {
         if (response) {
-          let fields = this.state.fields;
           let errors = this.state.errors;
           errors["doctors"] = "";
           if (response.data) {
@@ -146,6 +137,27 @@ class Search_section extends Component {
           console.log("Could not fetch data");
         }
       });
+    } else {
+      this.homeService
+        .getDoctorsByTreatingCondition(this.state.selectedConditions)
+        .then((response) => {
+          if (response) {
+            let errors = this.state.errors;
+            errors["doctors"] = "";
+            if (response.data) {
+              //this.setScheduledDataForAllDoctors(response.data);
+            }
+            this.setState({
+              doctors: response.data,
+              displaySearchedDoctors: true,
+              searchConditions: this.state.selectedConditions,
+              searchLocation: this.state.searchLocation,
+            });
+          } else {
+            console.log("Could not fetch data");
+          }
+        });
+    }
   };
 
   setScheduledDataForAllDoctors = (doctors) => {
@@ -182,30 +194,30 @@ class Search_section extends Component {
         />
       );
     }
-    const CustomAutocomplete = withStyles({
-      tag: {
-        backgroundColor: "#a0a",
-        height: 24,
-        position: "relative",
-        zIndex: 0,
-        "& .MuiChip-label": {
-          color: "#fff",
-        },
-        "& .MuiChip-deleteIcon": {
-          color: "red",
-        },
-        "&:after": {
-          content: '""',
-          right: 10,
-          top: 6,
-          height: 12,
-          width: 12,
-          position: "absolute",
-          backgroundColor: yellow,
-          zIndex: -1,
-        },
-      },
-    })(Autocomplete);
+    // const CustomAutocomplete = withStyles({
+    //   tag: {
+    //     backgroundColor: "#a0a",
+    //     height: 24,
+    //     position: "relative",
+    //     zIndex: 0,
+    //     "& .MuiChip-label": {
+    //       color: "#fff",
+    //     },
+    //     "& .MuiChip-deleteIcon": {
+    //       color: "red",
+    //     },
+    //     "&:after": {
+    //       content: '""',
+    //       right: 10,
+    //       top: 6,
+    //       height: 12,
+    //       width: 12,
+    //       position: "absolute",
+    //       backgroundColor: yellow,
+    //       zIndex: -1,
+    //     },
+    //   },
+    // })(Autocomplete);
 
     return (
       <>
@@ -220,8 +232,8 @@ class Search_section extends Component {
               <div className="search-box">
                 <form onSubmit={this.handleSubmit}>
                   <div className="form-group search-location">
-                    <Autocomplete style={{width:"220px"}}
-                      
+                    <Autocomplete
+                      style={{ width: "220px" }}
                       id="doctor-name"
                       options={
                         this.state.fields["searchLocations"]
@@ -252,7 +264,6 @@ class Search_section extends Component {
 
                   <div className="form-group search-info">
                     <Autocomplete
-                     
                       id="doctor-name"
                       options={
                         this.state.fields["conditionsAndSpecialities"]
@@ -284,7 +295,6 @@ class Search_section extends Component {
                   </div>
                   <div className="form-group search-date">
                     <DatePicker
-                    
                       onChange={this.onChange}
                       value={this.state.value}
                       minDate={new Date()}
@@ -294,11 +304,6 @@ class Search_section extends Component {
                   <button
                     type="submit"
                     className="btn btn-primary search-btn"
-                   
-                    disabled={
-                      this.state.selectedConditions.length === 0 &&
-                      this.state.searchLocation === ""
-                    }
                     onClick={this.getDoctorsByTreatingCondition}
                   >
                     <i className="fas fa-search"></i> <span>Search</span>
@@ -313,4 +318,4 @@ class Search_section extends Component {
   }
 }
 
-export default Search_section;
+export default SearchSection;
