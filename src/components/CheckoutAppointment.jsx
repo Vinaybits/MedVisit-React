@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Footer from "./Footer";
+import Footer from "./footer";
 
 class CheckoutAppointment extends Component {
   constructor(props) {

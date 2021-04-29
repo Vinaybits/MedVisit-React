@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Footer from "./Footer";
+import Footer from "./footer";
 import Search from "../layout/Search";
 
 class DoctorSearchResult extends Component {

@@ -4,11 +4,11 @@ import React, {Component} from "react";
 
 import { GlobalProvider} from './context';
 import MasterLayout from "./layout/MasterLayout";
-import Calendar from "./components/Calendar";
+import Calendar from "./components/calendar";
 import DoctorSearchResult from './components/DoctorSearchResult';
 import CheckoutAppointment from "./components/CheckoutAppointment";
 import DoctorProfile from "./layout/DoctorProfile";
-import Header from "./components/Header";
+import Header from "./components/header";
 
 class App extends Component {
    

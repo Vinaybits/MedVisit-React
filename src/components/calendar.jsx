@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import doc_img2 from "../assets/img/doctors/doctor-02.jpg";
-import Footer from "./Footer";
+import Footer from "./footer";
 import cardiologist_sp from "../assets/img/specialities/cardiologist_sp.png";
 import CalendarDaySection from "./CalendarDaySection";
 import CalendarTimeSlotSection from "./CalendarTimeSlotSelection";
@@ -9,7 +9,7 @@ import HomeService from "./home.service";
 import { reactLocalStorage } from "reactjs-localstorage";
 import { GlobalContext } from "../context";
 import PropTypes from "prop-types";
-import Breadcrumb from "./Breadcrumb";
+import Breadcrumb from "./breadcrumb";
 import RegistrationConfirmationPopup from "./RegistrationConfirmationPopup";
 
 class Calendar extends Component {
