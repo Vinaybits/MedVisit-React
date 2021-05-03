@@ -1,23 +1,23 @@
 import React, { Component } from "react";
-
-import HomeService from "./home.service";
-import { Spinner } from "react-bootstrap";
-import { GlobalContext } from "../context";
 import { Modal } from "react-bootstrap";
-import "../components/patient.css";
+import HomeService from "../home.service";
+import "../patient.css";
+import { Spinner } from "react-bootstrap";
+import { GlobalContext } from "../../context";
 
-class PatientRegister extends Component {
+class PatientLogin extends Component {
   static contextType = GlobalContext;
   constructor(props) {
     super(props);
     this.state = {
+      loginError: "",
       userLoggedIn: false,
       isLoading: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.homeService = new HomeService();
     this.clearError = this.clearError.bind(this);
+    this.homeService = new HomeService();
     this.handleClose = this.handleClose.bind(this);
   }
 
@@ -26,34 +26,33 @@ class PatientRegister extends Component {
   }
 
   handleClose(str) {
-    if (str === "login") this.context.handleClose("login");
-    else if (str === "closeregister") this.context.handleClose("closeregister");
+    if (str === "register") this.context.handleClose("register");
+    else if (str === "closelogin") this.context.handleClose("closelogin");
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ isLoading: true });
+
     const body = {
-      name: e.target.elements["name"].value,
       phone: e.target.elements["phone"].value,
       password: e.target.elements["password"].value,
     };
-    if (!body.phone || !body.password || !body.name) {
-      this.setState({ loginError: "Please Check your details" });
+
+    if (!body.phone || !body.password) {
+      this.setState({ loginError: "Please Check your details." });
       this.setState({ isLoading: false });
     } else {
       try {
-        this.homeService.registerPatient(body).then((response) => {
+        this.homeService.userAuthenticate(body).then((response) => {
           if (response.status === 200) {
-            console.log(response);
-            console.log(response.data);
-            this.context.onChangeValue(response.data);
+            this.context.updateLoggedInUser(response.data);
             this.setState({ userLoggedIn: true });
             this.setState({ isLoading: false });
-            this.context.handleClose("closeregister");
+            this.context.handleClose("closelogin");
           } else if (response.status === 400) {
             this.setState({
-              loginError: "Wrong Credentials. Please try again.",
+              loginError: "Please enter Valid Mobile Number/Password.",
             });
             this.setState({ isLoading: false });
           } else {
@@ -71,64 +70,57 @@ class PatientRegister extends Component {
     return (
       <>
         <Modal
-          show={this.context.showregister}
+          show={this.context.showlogin}
           onHide={() => {
-            this.handleClose("closeregister");
+            this.handleClose("closelogin");
             this.clearError();
           }}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Sign Up</Modal.Title>
+            <Modal.Title style={{ textAlign: "center" }}>
+              <span style={{ textAlign: "center" }}>Login</span>
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div class="myform form ">
+            <div className="myform form ">
               {this.state.loginError && (
                 <div style={{ color: "#B31E6F" }}>
                   <span>{this.state.loginError}</span>
                 </div>
               )}
-
               <form onSubmit={this.handleSubmit}>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Fullname</label>
+                <div className="form-group">
+                  <label htmlFor="exampleInputEmail1">Mobile Number</label>
                   <input
-                    type="text"
-                    placeholder="Enter your Full Name"
-                    name="name"
-                    className="form-control floating"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Mobile Number</label>
-                  <input
-                    type="text"
-                    placeholder="Enter your Mobile Number"
+                    id="phone"
+                    type="phone"
                     name="phone"
                     className="form-control floating"
                   />
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Create Password</label>
+
+                <div className="form-group">
+                  <label htmlFor="exampleInputEmail1">Password</label>
                   <input
-                    placeholder="Enter Atleast 6 Characters Password"
+                    id="password"
                     type="password"
                     name="password"
                     className="form-control floating"
                   />
                 </div>
-                <div class="form-group">
-                  <p class="text-center">
-                    By signing up you accept our <a href="#">Terms Of Use</a>
+                <div className="form-group">
+                  <p className="text-center">
+                    By signing in you accept our <a href="#">Terms Of Use</a>
                   </p>
                 </div>
-                <div class="col-md-12 text-center ">
+                <div className="col-md-12 text-center ">
                   <button
                     type="submit"
-                    class=" btn btn-block mybtn tx-tfm book-btn"
+                    className=" btn btn-block mybtn btn-primary tx-tfm"
                   >
                     {this.state.isLoading ? (
                       <span>
-                        Signing Up{" "}
+                        Signing In{" "}
                         <Spinner
                           style={{
                             width: "1.2rem",
@@ -140,25 +132,25 @@ class PatientRegister extends Component {
                         ></Spinner>
                       </span>
                     ) : (
-                      "Sign Up"
+                      "Sign in"
                     )}
                   </button>
                 </div>
-                <div class="col-md-12 ">
-                  <div class="login-or">
-                    <hr class="hr-or" />
-                    <span class="span-or">or</span>
+                <div className="col-md-12 ">
+                  <div className="login-or">
+                    <hr className="hr-or" />
+                    <span className="span-or">or</span>
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <p class="text-center">
-                    Already have a account?{" "}
+                <div className="form-group">
+                  <p className="text-center">
+                    Don't have account?{" "}
                     <span
-                      onClick={() => this.handleClose("login")}
+                      onClick={() => this.handleClose("register")}
                       style={{ color: "rgb(60,168,247)", cursor: "pointer" }}
                     >
-                      Sign In here
+                      Sign Up here
                     </span>
                   </p>
                 </div>
@@ -171,4 +163,4 @@ class PatientRegister extends Component {
   }
 }
 
-export default PatientRegister;
+export default PatientLogin;

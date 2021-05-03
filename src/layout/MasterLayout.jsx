@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Footer from "../components/Footer";
+import Footer from "./Footer";
 
 import Homepage from "./Homepage";
 class MasterLayout extends Component {

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+
 export const GlobalContext = React.createContext();
 
 export class GlobalProvider extends Component {
@@ -10,6 +12,10 @@ export class GlobalProvider extends Component {
 
     log_out() {
         this.setState({ firstName: null, lastName: null, email: null, phone: null, userId: null, showlogout: true })
+    }
+
+    handle_searchDate(date) {
+        this.setState({ searchDate: date })
     }
 	
     handle_close(str, url) {
@@ -30,19 +36,43 @@ export class GlobalProvider extends Component {
             }
     }
 
+    cancel_patient_changes_callback(str) {
+		this.setState({show: str})
+    }
+    
+    callback_function(param1, param2, param3, param4) {
+        this.setState({
+            selectedDoctor: param1,
+            doctorDaysOff: param2,
+            selectedSlotTime: param3,
+            selectedSlotDate: param4,
+        })
+    }
+
 	state = {
 		    firstName: null,
             lastName: null,
             email: null,
             phone: null,
-        userId: null,
+            userId: null,
             id:null,
             showlogin: false,
             showregister: false,
             showlogout: false,
             handleClose: (str) => this.handle_close(str),
             updateLoggedInUser: (item) => this.update_loggedIn_user(item),
-            logOut:this.log_out()
+            logOut: this.log_out(),
+            searchDate: new Date(),
+            handleSearchDate: (date) => this.handle_searchDate(date),
+            show: false,
+	    	slotTime: null,
+		    slotDate: null,
+            cancelPatientChangesCallBack: (str) => this.cancel_patient_changes_callback(str),
+            selectedDoctor: {},
+            doctorDaysOff: null,
+            selectedSlotTime: null,
+            selectedSlotDate: null,
+            callbackFunction:(param1,param2,param3,param4) => this.callback_function(param1,param2,param3,param4)
 		
 	};
 	render() {

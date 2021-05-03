@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import doc_img2 from "../assets/img/doctors/doctor-02.jpg";
-import Footer from "./Footer";
+import Footer from "../layout/Footer";
 import cardiologist_sp from "../assets/img/specialities/cardiologist_sp.png";
 import CalendarDaySection from "./CalendarDaySection";
 import CalendarTimeSlotSection from "./CalendarTimeSlotSelection";
@@ -9,7 +9,7 @@ import HomeService from "./home.service";
 import { reactLocalStorage } from "reactjs-localstorage";
 import { GlobalContext } from "../context";
 import PropTypes from "prop-types";
-import Breadcrumb from "./Breadcrumb";
+import Breadcrumb from "../layout/Breadcrumb";
 import RegistrationConfirmationPopup from "./RegistrationConfirmationPopup";
 
 class Calendar extends Component {
@@ -37,16 +37,12 @@ class Calendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedDoctor: this.props.location.state.doctor,
-      doctorDaysOff: this.props.location.state.doctorDaysOff,
       fromDate: new Date(),
       toDate: new Date(new Date().setDate(new Date().getDate() + 6)),
       datesInRange: this.getDatesInRange(
         new Date(),
         new Date(new Date().setDate(new Date().getDate() + 6))
       ),
-      selectedSlotTime: "",
-      selectedSlotDate: "",
       navigateToCheckoutPage: false,
       show: false,
       email: "",
@@ -64,18 +60,19 @@ class Calendar extends Component {
   }
 
   callbackFunction = (slotTime, slotDate) => {
-    if (this.context.firstName) {
-      this.setState({
-        selectedDoctor: this.props.location.state.doctor,
-        doctorDaysOff: this.props.location.state.doctorDaysOff,
-        selectedSlotTime: slotTime,
-        selectedSlotDate: slotDate,
-        show: true,
-      });
+    if (this.context.id) {
+      this.context.cancelPatientChangesCallBack(true);
+      this.context.callbackFunction(
+        this.props.location.state.doctor,
+        this.props.location.state.doctorDaysOff,
+        slotTime,
+        slotDate
+      );
     } else {
       this.context.handleClose("login");
     }
   };
+
   componentDidMount() {
     this.getDoctorCalendarSlotsOff(
       this.state.datesInRange[0],
@@ -99,8 +96,8 @@ class Calendar extends Component {
   getDoctorCalendarSlotsOff(fromDate, toDate) {
     this.homeService
       .getDoctorCalendarSlotsOff(
-        this.state.selectedDoctor.id,
-        this.state.selectedDoctor.clinic_id,
+        this.context.selectedDoctor.id,
+        this.context.selectedDoctor.clinic_id,
         fromDate,
         toDate
       )
@@ -119,8 +116,8 @@ class Calendar extends Component {
     e.preventDefault();
 
     const body = {
-      slotTime: this.state.selectedSlotTime,
-      slotDate: this.state.selectedSlotDate,
+      slotTime: this.context.selectedSlotTime,
+      slotDate: this.context.selectedSlotDate,
       doctor_id: this.props.location.state.doctor.id,
       clinic_id: this.props.location.state.doctor.clinic_id,
       patient_id: this.state.patient.userId,
@@ -193,7 +190,7 @@ class Calendar extends Component {
   };
 
   cancelPatientChangesCallBack = (show) => {
-    this.setState({ show: show });
+    this.context.cancelPatientChangesCallBack(show);
   };
 
   sameDate(date1, date2) {
@@ -247,6 +244,8 @@ class Calendar extends Component {
   };
 
   render() {
+    console.log(this.context);
+    console.log(this.bookType);
     console.log(this.state.patient);
     // publish calendar upto sixty days
     let sixtyDaysFromNow = new Date(
@@ -272,8 +271,8 @@ class Calendar extends Component {
               selectedDoctor: this.props.location.state.doctor,
               selectedClinicName: this.state.clinicName,
               selectedClinicId: 1,
-              selectedSlotTime: this.state.selectedSlotTime,
-              selectedSlotDate: this.state.selectedSlotDate,
+              selectedSlotTime: this.context.selectedSlotTime,
+              selectedSlotDate: this.context.selectedSlotDate,
               patient: this.state.patient,
             },
           }}
@@ -410,9 +409,9 @@ class Calendar extends Component {
               doctor={this.props.location.state.doctor}
               savePatientCallBack={this.callbackFunctionPatientModal}
               cancelPatientChangesCallBack={this.cancelPatientChangesCallBack}
-              show={this.state.show}
-              slotTime={this.state.selectedSlotTime}
-              slotDate={this.state.selectedSlotDate}
+              show={this.context.show}
+              slotTime={this.context.selectedSlotTime}
+              slotDate={this.context.selectedSlotDate}
             />
           </div>
         </div>

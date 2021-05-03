@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import "./component.css";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
-import HomeService from "./home.service";
+import HomeService from "../home.service";
 import { Redirect } from "react-router-dom";
 import DatePicker from "react-date-picker";
+import { GlobalContext } from "../../context";
 
 class SearchSection extends Component {
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -295,8 +297,8 @@ class SearchSection extends Component {
                   </div>
                   <div className="form-group search-date">
                     <DatePicker
-                      onChange={this.onChange}
-                      value={this.state.value}
+                      onChange={this.context.handleSearchDate}
+                      value={this.context.searchDate}
                       minDate={new Date()}
                     />
                   </div>

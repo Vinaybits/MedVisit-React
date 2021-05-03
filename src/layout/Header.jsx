@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import logo from "../assets/img/logo.png";
-import PatientLogin from "./PatientLogin";
-import PatientRegister from "./PatientRegister";
+import PatientLogin from "../components/LoginAndRegister/PatientLogin";
+import PatientRegister from "../components/LoginAndRegister/PatientRegister";
 import { Modal } from "react-bootstrap";
 import userprofile from "../../src/assets/img/doctors/doctor-01.jpg";
 import { GlobalContext } from "../context";
+import { Link } from "react-router-dom";
 class Header extends Component {
   static contextType = GlobalContext;
   constructor(props) {
@@ -31,9 +32,12 @@ class Header extends Component {
                 <span></span>
               </span>
             </a>
-            <a href="/" className="navbar-brand logo">
+            {/* <a href="/" className="navbar-brand logo">
               <img src={logo} className="img-fluid" alt="Logo" />
-            </a>
+            </a> */}
+            <Link to="/" className="navbar-brand logo">
+              <img src={logo} className="img-fluid" alt="Logo" />
+            </Link>
           </div>
           <div className="main-menu-wrapper">
             <div className="menu-header">

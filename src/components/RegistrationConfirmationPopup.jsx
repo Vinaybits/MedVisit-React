@@ -230,7 +230,7 @@ class RegistrationConfirmationPopup extends Component {
                     onChange={this.onEmailChange}
                   />
                   <label className="focus-label">
-                    {!this.state.patient.email ? "Email" : ""}
+                    {this.state.patient.email === "undefined" ? "Email" : ""}
                   </label>
                 </div>
                 <div className="form-group form-focus">

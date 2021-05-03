@@ -1,8 +1,8 @@
 import React from "react";
-import DocSection from "../components/DocSection";
-import MobileSection from "../components/MobileSection";
-import SearchSection from "../components/SearchSection";
-import SpecialitySection from "../components/SpecialitySection";
+import DocSection from "../components/HomePageComponents/DocSection";
+import MobileSection from "../components/HomePageComponents/MobileSection";
+import SearchSection from "../components/HomePageComponents/SearchSection";
+import SpecialitySection from "../components/HomePageComponents/SpecialitySection";
 
 const Homepage = () => {
   return (

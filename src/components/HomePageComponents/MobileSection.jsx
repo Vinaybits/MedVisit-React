@@ -1,6 +1,6 @@
 import React from "react";
-import img_mobile_app from "../assets/img/features/feature.png";
-import play_store from "../assets/img/playstore.png";
+import img_mobile_app from "../../assets/img/features/feature.png";
+import play_store from "../../assets/img/playstore.png";
 
 const MobileSection = () => {
   return (
