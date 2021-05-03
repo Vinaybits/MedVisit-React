@@ -32,7 +32,7 @@ class CalendarDaySection extends Component {
             )
         })
 
-      return (<div>{datesInRangeHeader}</div>)
+      return (<span>{datesInRangeHeader}</span>)
 
     }
 }
