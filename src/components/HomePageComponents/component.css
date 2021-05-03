@@ -1,0 +1,8 @@
+.section-search {
+  background: #f9f9f9 url(../../assets/img/search-bg.png) repeat-x bottom center;
+  min-height: 450px;
+  background-size: 40% auto;
+  position: relative;
+  background-blend-mode: Darken;
+  padding: 80px 0;
+}

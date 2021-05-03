@@ -1,5 +1,5 @@
 import React from "react";
-import Breadcrumb from "../components/breadcrumb";
+import Breadcrumb from "./Breadcrumb";
 import SearchMainContent from "../components/SearchMainContent";
 
 const Search = (props) => {

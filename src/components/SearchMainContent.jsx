@@ -1,10 +1,26 @@
 import React, { Component } from "react";
-
+import DatePicker from "react-date-picker";
 import doctor1 from "../assets/img/doctors/doctor-thumb-01.jpg";
 import dental_sp from "../assets/img/specialities/dental_speciality.png";
 import { Redirect } from "react-router-dom";
 import HomeService from "./home.service";
+import { GlobalContext } from "../context";
+import RegistrationConfirmationPopup from "./RegistrationConfirmationPopup";
+
+function formatDate(date) {
+  var d = new Date(date),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return [day, month, year].join("/");
+}
+
 class SearchMainContent extends Component {
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -117,13 +133,11 @@ class SearchMainContent extends Component {
                   </div>
                   <div class="card-body">
                     <div class="filter-widget">
-                      <div class="cal-icon">
-                        <input
-                          type="text"
-                          class="form-control datetimepicker"
-                          placeholder="Select Date"
-                        />
-                      </div>
+                      <DatePicker
+                        onChange={this.context.handleSearchDate}
+                        value={this.context.searchDate}
+                        minDate={new Date()}
+                      />
                     </div>
                     <div class="filter-widget">
                       <h4>Gender</h4>
@@ -208,7 +222,7 @@ class SearchMainContent extends Component {
                                 <img
                                   src={doctor1}
                                   class="img-fluid"
-                                  alt="User Image"
+                                  alt="User"
                                 />
                               </a>
                             </div>
@@ -229,57 +243,56 @@ class SearchMainContent extends Component {
                                 {doctor.speciality}
                               </h5>
                               <hr />
+
                               <button
                                 type="button"
                                 class="btn btn-outline-info"
-                                onClick={this.getDoctorCalendarOffDaysAndNonAvailableSlots(
-                                  doctor
-                                )}
                               >
-                                Book Appointment
+                                View Profile
                               </button>
                             </div>
                           </div>
                           <div class="doc-info-right">
                             <p class="doc-speciality">
-                              Available Slots - 11/11/1111{" "}
+                              Available Slots -{" "}
+                              {formatDate(this.context.searchDate)}
                             </p>
                             <div class="clini-infos">
                               <button
                                 type="button"
                                 class="btn btn-outline-warning btn-sm"
                               >
-                                8:30-9:00am
+                                8:30 AM
                               </button>
                               <button
                                 type="button"
                                 class="btn btn-outline-warning btn-sm"
                               >
-                                9:30-10:00am
+                                9:00 AM
                               </button>
                               <button
                                 type="button"
                                 class="btn btn-outline-warning btn-sm"
                               >
-                                12:00-12:30pm
+                                9:30 AM
                               </button>
                               <button
                                 type="button"
                                 class="btn btn-outline-warning btn-sm"
                               >
-                                1:00-1:30pm
+                                10:00 AM
                               </button>
                               <button
                                 type="button"
                                 class="btn btn-outline-warning btn-sm"
                               >
-                                12:00-12:30pm
+                                10:30 AM
                               </button>
                               <button
                                 type="button"
                                 class="btn btn-outline-warning btn-sm"
                               >
-                                1:00-1:30pm
+                                11:00 AM
                               </button>
                             </div>
 
@@ -289,6 +302,9 @@ class SearchMainContent extends Component {
                               <button
                                 type="button"
                                 class="btn btn-light btn-sm"
+                                onClick={this.getDoctorCalendarOffDaysAndNonAvailableSlots(
+                                  doctor
+                                )}
                               >
                                 View more available slots
                               </button>

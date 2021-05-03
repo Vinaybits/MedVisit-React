@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import doc_img1 from "../assets/img/doctors/doctor-01.jpg";
-import HomeService from "./home.service";
+import doc_img1 from "../../assets/img/doctors/doctor-01.jpg";
+import HomeService from "../home.service";
 import Slider from "react-slick";
 // import doc_img2 from "../assets/img/doctors/doctor-02.jpg";
 // import doc_img3 from "../assets/img/doctors/doctor-03.jpg";

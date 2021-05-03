@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import icon1 from "../assets/img/specialities/urology_sp.png";
-import icon2 from "../assets/img/specialities/neurology_sp.png";
-import icon3 from "../assets/img/specialities/orthopedic_sp.png";
-import icon4 from "../assets/img/specialities/cardiologist_sp.png";
-import icon5 from "../assets/img/specialities/dental_speciality.png";
+import icon1 from "../../assets/img/specialities/urology_sp.png";
+import icon2 from "../../assets/img/specialities/neurology_sp.png";
+import icon3 from "../../assets/img/specialities/orthopedic_sp.png";
+import icon4 from "../../assets/img/specialities/cardiologist_sp.png";
+import icon5 from "../../assets/img/specialities/dental_speciality.png";
 
 class SpecialitySection extends Component {
   constructor(props) {
