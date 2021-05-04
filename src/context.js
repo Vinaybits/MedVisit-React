@@ -6,14 +6,12 @@ export const GlobalContext = React.createContext();
 export class GlobalProvider extends Component {
 
     update_loggedIn_user(event) {
-        alert("hi")
         reactLocalStorage.setObject('responseData', event);
         this.setState({patient: event})
         this.setState({firstName:event['first_name'], lastName:event["last_name"], id:event["id"], email : event.email, phone:event.phone,userId:event.id })
     }
 
     log_out() {
-        alert("bye")
         reactLocalStorage.remove('responseData');
         this.setState({ firstName: null, lastName: null, email: null, phone: null, userId: null, showlogout: true })
     }
