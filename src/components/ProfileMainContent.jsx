@@ -79,21 +79,26 @@ class ProfileMainContent extends Component {
         />
       );
     }
+    var condition1 = "";
+    var condition2 = "";
+    var condition3 = "";
+    var condition6 = "";
+    var condition11 = "";
+    if (typeof this.props.location.state.condition !== "undefined") {
+      let conditions = this.props.location.state.doctor.condition.split(",");
+      condition1 = conditions[1];
+      condition2 = conditions[2];
+      condition3 = conditions[3];
+      condition6 = conditions[6];
+      condition11 = conditions[11];
 
-    let conditions = this.props.location.state.doctor.condition.split(", ");
-    let condition1 = conditions[1];
-    let condition2 = conditions[2];
-    let condition3 = conditions[3];
-    let condition6 = conditions[6];
-    let condition11 = conditions[11];
-
-    let clinicAddress = [
-      this.props.location.state.doctor.street_address,
-      this.props.location.state.doctor.state,
-      this.props.location.state.doctor.country,
-      this.props.location.state.doctor.zip,
-    ].join(",");
-
+      var clinicAddress = [
+        this.props.location.state.doctor.street_address,
+        this.props.location.state.doctor.state,
+        this.props.location.state.doctor.country,
+        this.props.location.state.doctor.zip,
+      ].join(",");
+    }
     return (
       <>
         <div class="content">

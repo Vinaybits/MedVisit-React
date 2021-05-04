@@ -38,15 +38,15 @@ class DocSection extends Component {
     };
     return (
       <>
-        <section class="section section-doctor">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="section-header ">
+        <section className="section section-doctor">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-lg-4">
+                <div className="section-header ">
                   <h2>Book Our Doctor</h2>
                   <p>Lorem Ipsum is simply dummy text </p>
                 </div>
-                <div class="about-content">
+                <div className="about-content">
                   <p>
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
@@ -58,38 +58,38 @@ class DocSection extends Component {
                     sites still in their infancy. Various versions have evolved
                     over the years, sometimes
                   </p>
-                  <a href="javascript:;">Read More..</a>
+                  <a href="">Read More..</a>
                 </div>
               </div>
-              <div class="col-lg-8">
+              <div className="col-lg-8">
                 <Slider {...settings}>
-                  <div class="profile-widget">
-                    <div class="doc-img">
+                  <div className="profile-widget">
+                    <div className="doc-img">
                       <a href="doctor-profile.html">
-                        <img class="img-fluid" alt="User" src={doc_img1} />
+                        <img className="img-fluid" alt="User" src={doc_img1} />
                       </a>
-                      <a href="javascript:void(0)" class="fav-btn">
-                        <i class="far fa-bookmark"></i>
+                      <a href="" className="fav-btn">
+                        <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div class="pro-content">
-                      <h3 class="title">
-                        <a href="doctor-profile.html">
+                    <div className="pro-content">
+                      <h3 className="title">
+                        <a className="doctor-profile.html">
                           {typeof this.state.doctorArray[0] !== "undefined"
                             ? this.state.doctorArray[0].name
                             : ""}
                         </a>
-                        <i class="fas fa-check-circle verified"></i>
+                        <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p class="speciality">
+                      <p className="speciality">
                         {typeof this.state.doctorArray[0] !== "undefined"
                           ? this.state.doctorArray[0].speciality
                           : ""}
                       </p>
 
-                      <ul class="available-info">
+                      <ul className="available-info">
                         <li>
-                          <i class="fas fa-map-marker-alt"></i>
+                          <i className="fas fa-map-marker-alt"></i>
                           {typeof this.state.doctorArray[0] !== "undefined"
                             ? this.state.doctorArray[0].city
                             : ""}
@@ -103,53 +103,56 @@ class DocSection extends Component {
                             : ""}
                         </li>
                         <li>
-                          <i class="far fa-clock"></i> Available at{" "}
+                          <i className="far fa-clock"></i> Available at{" "}
                           {typeof this.state.doctorArray[0] !== "undefined"
                             ? this.state.doctorArray[0].clinic_name
                             : ""}
                         </li>
                       </ul>
-                      <div class="row row-sm">
-                        <div class="col-6">
-                          <a href="doctor-profile.html" class="btn view-btn">
+                      <div className="row row-sm">
+                        <div className="col-6">
+                          <a
+                            href="doctor-profile.html"
+                            className="btn view-btn"
+                          >
                             View Profile
                           </a>
                         </div>
-                        <div class="col-6">
-                          <a href="booking.html" class="btn book-btn">
+                        <div className="col-6">
+                          <a href="booking.html" className="btn book-btn">
                             Book Now
                           </a>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="profile-widget">
-                    <div class="doc-img">
+                  <div className="profile-widget">
+                    <div className="doc-img">
                       <a href="doctor-profile.html">
-                        <img class="img-fluid" alt="User" src={doc_img1} />
+                        <img className="img-fluid" alt="User" src={doc_img1} />
                       </a>
-                      <a href="javascript:void(0)" class="fav-btn">
-                        <i class="far fa-bookmark"></i>
+                      <a href="" className="fav-btn">
+                        <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div class="pro-content">
-                      <h3 class="title">
+                    <div className="pro-content">
+                      <h3 className="title">
                         <a href="doctor-profile.html">
                           {typeof this.state.doctorArray[1] !== "undefined"
                             ? this.state.doctorArray[1].name
                             : ""}
                         </a>
-                        <i class="fas fa-check-circle verified"></i>
+                        <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p class="speciality">
+                      <p className="speciality">
                         {typeof this.state.doctorArray[1] !== "undefined"
                           ? this.state.doctorArray[1].speciality
                           : ""}
                       </p>
 
-                      <ul class="available-info">
+                      <ul className="available-info">
                         <li>
-                          <i class="fas fa-map-marker-alt"></i>
+                          <i className="fas fa-map-marker-alt"></i>
                           {typeof this.state.doctorArray[1] !== "undefined"
                             ? this.state.doctorArray[1].city
                             : ""}
@@ -163,53 +166,56 @@ class DocSection extends Component {
                             : ""}
                         </li>
                         <li>
-                          <i class="far fa-clock"></i> Available at{" "}
+                          <i className="far fa-clock"></i> Available at{" "}
                           {typeof this.state.doctorArray[1] !== "undefined"
                             ? this.state.doctorArray[1].clinic_name
                             : ""}
                         </li>
                       </ul>
-                      <div class="row row-sm">
-                        <div class="col-6">
-                          <a href="doctor-profile.html" class="btn view-btn">
+                      <div className="row row-sm">
+                        <div className="col-6">
+                          <a
+                            href="doctor-profile.html"
+                            className="btn view-btn"
+                          >
                             View Profile
                           </a>
                         </div>
-                        <div class="col-6">
-                          <a href="booking.html" class="btn book-btn">
+                        <div className="col-6">
+                          <a href="booking.html" className="btn book-btn">
                             Book Now
                           </a>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="profile-widget">
-                    <div class="doc-img">
+                  <div className="profile-widget">
+                    <div className="doc-img">
                       <a href="doctor-profile.html">
-                        <img class="img-fluid" alt="User" src={doc_img1} />
+                        <img className="img-fluid" alt="User" src={doc_img1} />
                       </a>
-                      <a href="javascript:void(0)" class="fav-btn">
-                        <i class="far fa-bookmark"></i>
+                      <a href="" className="fav-btn">
+                        <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div class="pro-content">
-                      <h3 class="title">
+                    <div className="pro-content">
+                      <h3 className="title">
                         <a href="doctor-profile.html">
                           {typeof this.state.doctorArray[0] !== "undefined"
                             ? this.state.doctorArray[0].name
                             : ""}
                         </a>
-                        <i class="fas fa-check-circle verified"></i>
+                        <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p class="speciality">
+                      <p className="speciality">
                         {typeof this.state.doctorArray[0] !== "undefined"
                           ? this.state.doctorArray[0].speciality
                           : ""}
                       </p>
 
-                      <ul class="available-info">
+                      <ul className="available-info">
                         <li>
-                          <i class="fas fa-map-marker-alt"></i>
+                          <i className="fas fa-map-marker-alt"></i>
                           {typeof this.state.doctorArray[0] !== "undefined"
                             ? this.state.doctorArray[0].city
                             : ""}
@@ -223,53 +229,56 @@ class DocSection extends Component {
                             : ""}
                         </li>
                         <li>
-                          <i class="far fa-clock"></i> Available at{" "}
+                          <i className="far fa-clock"></i> Available at{" "}
                           {typeof this.state.doctorArray[0] !== "undefined"
                             ? this.state.doctorArray[0].clinic_name
                             : ""}
                         </li>
                       </ul>
-                      <div class="row row-sm">
-                        <div class="col-6">
-                          <a href="doctor-profile.html" class="btn view-btn">
+                      <div className="row row-sm">
+                        <div className="col-6">
+                          <a
+                            href="doctor-profile.html"
+                            className="btn view-btn"
+                          >
                             View Profile
                           </a>
                         </div>
-                        <div class="col-6">
-                          <a href="booking.html" class="btn book-btn">
+                        <div className="col-6">
+                          <a href="booking.html" className="btn book-btn">
                             Book Now
                           </a>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="profile-widget">
-                    <div class="doc-img">
+                  <div className="profile-widget">
+                    <div className="doc-img">
                       <a href="doctor-profile.html">
-                        <img class="img-fluid" alt="User" src={doc_img1} />
+                        <img className="img-fluid" alt="User" src={doc_img1} />
                       </a>
-                      <a href="javascript:void(0)" class="fav-btn">
-                        <i class="far fa-bookmark"></i>
+                      <a href="javascript:void(0)" className="fav-btn">
+                        <i className="far fa-bookmark"></i>
                       </a>
                     </div>
-                    <div class="pro-content">
-                      <h3 class="title">
+                    <div className="pro-content">
+                      <h3 className="title">
                         <a href="doctor-profile.html">
                           {typeof this.state.doctorArray[1] !== "undefined"
                             ? this.state.doctorArray[1].name
                             : ""}
                         </a>
-                        <i class="fas fa-check-circle verified"></i>
+                        <i className="fas fa-check-circle verified"></i>
                       </h3>
-                      <p class="speciality">
+                      <p className="speciality">
                         {typeof this.state.doctorArray[1] !== "undefined"
                           ? this.state.doctorArray[1].speciality
                           : ""}
                       </p>
 
-                      <ul class="available-info">
+                      <ul className="available-info">
                         <li>
-                          <i class="fas fa-map-marker-alt"></i>
+                          <i className="fas fa-map-marker-alt"></i>
                           {typeof this.state.doctorArray[1] !== "undefined"
                             ? this.state.doctorArray[1].city
                             : ""}
@@ -283,20 +292,23 @@ class DocSection extends Component {
                             : ""}
                         </li>
                         <li>
-                          <i class="far fa-clock"></i> Available at{" "}
+                          <i className="far fa-clock"></i> Available at{" "}
                           {typeof this.state.doctorArray[1] !== "undefined"
                             ? this.state.doctorArray[1].clinic_name
                             : ""}
                         </li>
                       </ul>
-                      <div class="row row-sm">
-                        <div class="col-6">
-                          <a href="doctor-profile.html" class="btn view-btn">
+                      <div className="row row-sm">
+                        <div className="col-6">
+                          <a
+                            href="doctor-profile.html"
+                            className="btn view-btn"
+                          >
                             View Profile
                           </a>
                         </div>
-                        <div class="col-6">
-                          <a href="booking.html" class="btn book-btn">
+                        <div className="col-6">
+                          <a href="booking.html" className="btn book-btn">
                             Book Now
                           </a>
                         </div>

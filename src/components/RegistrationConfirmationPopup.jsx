@@ -169,7 +169,7 @@ class RegistrationConfirmationPopup extends Component {
     return (
       <>
         <div
-          class="modal fade"
+          className="modal fade"
           id="exampleModal"
           tabIndex="-1"
           role="dialog"

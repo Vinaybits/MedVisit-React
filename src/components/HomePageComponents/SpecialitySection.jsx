@@ -4,13 +4,20 @@ import icon2 from "../../assets/img/specialities/neurology_sp.png";
 import icon3 from "../../assets/img/specialities/orthopedic_sp.png";
 import icon4 from "../../assets/img/specialities/cardiologist_sp.png";
 import icon5 from "../../assets/img/specialities/dental_speciality.png";
-
+import Slider from "react-slick";
 class SpecialitySection extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 3,
+    };
     return (
       <>
         <section className="section section-specialities">
@@ -24,7 +31,7 @@ class SpecialitySection extends Component {
             </div>
             <div className="row justify-content-center">
               <div className="col-md-9">
-                <div className="specialities-slider slider">
+                <Slider {...settings}>
                   <div className="speicality-item text-center">
                     <div className="speicality-img">
                       <img src={icon1} className="img-fluid" alt="Speciality" />
@@ -74,7 +81,7 @@ class SpecialitySection extends Component {
                     </div>
                     <p>Dentist</p>
                   </div>
-                </div>
+                </Slider>
               </div>
             </div>
           </div>

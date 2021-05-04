@@ -9,14 +9,14 @@ Version      : 1.0
 	
 	// Stick Sidebar
 	
-	if ($(window).width() > 767) {
-		if($('.theiaStickySidebar').length > 0) {
-			$('.theiaStickySidebar').theiaStickySidebar({
-			  // Settings
-			  additionalMarginTop: 30
-			});
-		}
-	}
+	// if ($(window).width() > 767) {
+	// 	if($('.theiaStickySidebar').length > 0) {
+	// 		$('.theiaStickySidebar').theiaStickySidebar({
+	// 		  // Settings
+	// 		  additionalMarginTop: 30
+	// 		});
+	// 	}
+	// }
 	
 // Sidebar
 	if($(window).width() <= 991){

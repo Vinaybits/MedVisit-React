@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { GlobalContext } from "../context";
 import Footer from "./Footer";
 
-import Homepage from "./homepage";
+import Homepage from "./Homepage";
 class MasterLayout extends Component {
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +21,14 @@ class MasterLayout extends Component {
       } else if (view === "") {
         return "";
       }
+    }
+    if (
+      localStorage &&
+      localStorage["responseData"] &&
+      JSON.parse(localStorage["responseData"]).id &&
+      !this.context.id
+    ) {
+      this.context.updateLoginDetails();
     }
     return (
       <>

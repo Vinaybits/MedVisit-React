@@ -1,22 +1,33 @@
 import React, { Component } from "react";
-
+import {reactLocalStorage} from 'reactjs-localstorage';
 
 export const GlobalContext = React.createContext();
 
 export class GlobalProvider extends Component {
 
     update_loggedIn_user(event) {
-        console.log(event)
+        alert("hi")
+        reactLocalStorage.setObject('responseData', event);
         this.setState({patient: event})
         this.setState({firstName:event['first_name'], lastName:event["last_name"], id:event["id"], email : event.email, phone:event.phone,userId:event.id })
     }
 
     log_out() {
+        alert("bye")
+        reactLocalStorage.remove('responseData');
         this.setState({ firstName: null, lastName: null, email: null, phone: null, userId: null, showlogout: true })
     }
 
+    update_logindetails() {
+        let event = reactLocalStorage.getObject('responseData');
+        this.setState({firstName:event['first_name'], lastName:event["last_name"], id:event["id"], email : event.email, phone:event.phone,userId:event.id })
+    }
     handle_searchDate(date) {
         this.setState({ searchDate: date })
+    }
+
+    handle_filterDate(date) {
+        this.setState({ filterDate: date })
     }
 	
     handle_close(str, url) {
@@ -66,9 +77,11 @@ export class GlobalProvider extends Component {
             showlogout: false,
             handleClose: (str) => this.handle_close(str),
             updateLoggedInUser: (item) => this.update_loggedIn_user(item),
-            logOut: this.log_out(),
+            logOut: this.log_out,
+            filterDate: new Date(),
             searchDate: new Date(),
             handleSearchDate: (date) => this.handle_searchDate(date),
+            handleFilterDate:(date) =>this.handle_filterDate(date),
             show: false,
 	    	slotTime: null,
 		    slotDate: null,
@@ -77,9 +90,10 @@ export class GlobalProvider extends Component {
             doctorDaysOff: null,
             selectedSlotTime: null,
             selectedSlotDate: null,
-        callbackFunction: (param1, param2, param3, param4) => this.callback_function(param1, param2, param3, param4),
-        patient: {},
-            setPatient:(param) => this.set_patient(param) 
+            callbackFunction: (param1, param2, param3, param4) => this.callback_function(param1, param2, param3, param4),
+            patient: {},
+            setPatient: (param) => this.set_patient(param),
+            updateLoginDetails:() => this.update_logindetails()
 		
 	};
 	render() {

@@ -58,10 +58,11 @@ class SearchMainContent extends Component {
       });
   };
 
-  viewDoctorProfile = (doctor) => (e) => {
+  viewDoctorProfile = (doctor) => {
     this.homeService.getDoctorById(doctor.id).then((response) => {
       if (response) {
         if (response.data) {
+          console.log(response.data);
           this.setState({
             selectedDoctor: response.data,
             viewDoctorProfile: true,
@@ -168,86 +169,94 @@ class SearchMainContent extends Component {
 
     return (
       <>
-        <div class="content">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
-                <div class="card search-filter">
-                  <div class="card-header">
-                    <h4 class="card-title mb-0">Search Filter</h4>
+        <div className="content">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+                <div className="card search-filter">
+                  <div className="card-header">
+                    <h4 className="card-title mb-0">Search Filter</h4>
                   </div>
-                  <div class="card-body">
-                    <div class="filter-widget">
+                  <div className="card-body">
+                    <div className="filter-widget">
                       <DatePicker
-                        onChange={this.context.handleSearchDate}
-                        value={this.context.searchDate}
+                        onChange={this.context.handleFilterDate}
+                        value={this.context.filterDate}
                         minDate={new Date()}
                       />
                     </div>
-                    <div class="filter-widget">
+                    <div className="filter-widget">
                       <h4>Gender</h4>
                       <div>
-                        <label class="custom_check">
-                          <input type="checkbox" name="gender_type" checked />
-                          <span class="checkmark"></span> Male Doctor
+                        <label className="custom_check">
+                          <input
+                            type="checkbox"
+                            name="gender_type"
+                            defaultChecked
+                          />
+                          <span className="checkmark"></span> Male Doctor
                         </label>
                       </div>
                       <div>
-                        <label class="custom_check">
+                        <label className="custom_check">
                           <input type="checkbox" name="gender_type" />
-                          <span class="checkmark"></span> Female Doctor
+                          <span className="checkmark"></span> Female Doctor
                         </label>
                       </div>
                     </div>
-                    <div class="filter-widget">
+                    <div className="filter-widget">
                       <h4>Select Specialist</h4>
                       <div>
-                        <label class="custom_check">
+                        <label className="custom_check">
                           <input
                             type="checkbox"
                             name="select_specialist"
-                            checked
+                            defaultChecked
                           />
-                          <span class="checkmark"></span> Urology
+                          <span className="checkmark"></span> Urology
                         </label>
                       </div>
                       <div>
-                        <label class="custom_check">
+                        <label className="custom_check">
                           <input
                             type="checkbox"
                             name="select_specialist"
-                            checked
+                            defaultChecked
                           />
-                          <span class="checkmark"></span> Neurology
+                          <span className="checkmark"></span> Neurology
                         </label>
                       </div>
                       <div>
-                        <label class="custom_check">
+                        <label className="custom_check">
                           <input type="checkbox" name="select_specialist" />
-                          <span class="checkmark"></span> Dentist
+                          <span className="checkmark"></span> Dentist
                         </label>
                       </div>
                       <div>
-                        <label class="custom_check">
+                        <label className="custom_check">
                           <input type="checkbox" name="select_specialist" />
-                          <span class="checkmark"></span> Orthopedic
+                          <span className="checkmark"></span> Orthopedic
                         </label>
                       </div>
                       <div>
-                        <label class="custom_check">
+                        <label className="custom_check">
                           <input type="checkbox" name="select_specialist" />
-                          <span class="checkmark"></span> Cardiologist
+                          <span className="checkmark"></span> Cardiologist
                         </label>
                       </div>
                       <div>
-                        <label class="custom_check">
+                        <label className="custom_check">
                           <input type="checkbox" name="select_specialist" />
-                          <span class="checkmark"></span> Cardiologist
+                          <span className="checkmark"></span> Cardiologist
                         </label>
                       </div>
                     </div>
-                    <div class="btn-search">
-                      <button type="button" class="btn btn-block">
+                    <div className="btn-search">
+                      <button
+                        type="button"
+                        className="btn btn-block"
+                        onClick={() => this.context.handleSearchDate}
+                      >
                         Search
                       </button>
                     </div>
@@ -255,34 +264,34 @@ class SearchMainContent extends Component {
                 </div>
               </div>
 
-              <div class="col-md-12 col-lg-8 col-xl-9">
+              <div className="col-md-12 col-lg-8 col-xl-9">
                 {this.props.doctors.length > 0 &&
                   this.props.doctors.map((doctor) => (
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="doctor-widget">
-                          <div class="doc-info-left">
-                            <div class="doctor-img">
+                    <div className="card" key={doctor.name}>
+                      <div className="card-body">
+                        <div className="doctor-widget">
+                          <div className="doc-info-left">
+                            <div className="doctor-img">
                               <a href="doctor-profile.html">
                                 <img
                                   src={doctor1}
-                                  class="img-fluid"
+                                  className="img-fluid"
                                   alt="User"
                                 />
                               </a>
                             </div>
-                            <div class="doc-info-cont">
-                              <h4 class="doc-name">
+                            <div className="doc-info-cont">
+                              <h4 className="doc-name">
                                 <a href="doctor-profile.html">{doctor.name}</a>
                               </h4>
-                              <p class="doc-speciality">
+                              <p className="doc-speciality">
                                 MDS - Periodontology and Oral Implantology, BDS
                               </p>
 
-                              <h5 class="doc-department">
+                              <h5 className="doc-department">
                                 <img
                                   src={dental_sp}
-                                  class="img-fluid"
+                                  className="img-fluid"
                                   alt="Speciality"
                                 />
                                 {doctor.speciality}
@@ -291,14 +300,15 @@ class SearchMainContent extends Component {
 
                               <button
                                 type="button"
-                                class="btn btn-outline-info"
+                                className="btn btn-outline-info"
+                                onClick={() => this.viewDoctorProfile(doctor)}
                               >
                                 View Profile
                               </button>
                             </div>
                           </div>
-                          <div class="doc-info-right">
-                            <p class="doc-speciality">
+                          <div className="doc-info-right">
+                            <p className="doc-speciality">
                               Available Slots -{" "}
                               {formatDate(this.context.searchDate)}
                             </p>
@@ -331,11 +341,11 @@ class SearchMainContent extends Component {
                               slotDate={this.context.selectedSlotDate}
                             />
                             <div>
-                              {/* <button type="button" class="btn btn-outline-info" onClick={this.viewDoctorProfile(doctor)}>View Profile</button> */}
-                              {/* <button type="button" class="btn btn-outline-info" onClick={this.getDoctorCalendarOffDaysAndNonAvailableSlots(doctor)}>Book Appointment</button> */}
+                              {/* <button type="button" className="btn btn-outline-info" onClick={this.viewDoctorProfile(doctor)}>View Profile</button> */}
+                              {/* <button type="button" className="btn btn-outline-info" onClick={this.getDoctorCalendarOffDaysAndNonAvailableSlots(doctor)}>Book Appointment</button> */}
                               <button
                                 type="button"
-                                class="btn btn-light btn-sm"
+                                className="btn btn-light btn-sm"
                                 onClick={this.getDoctorCalendarOffDaysAndNonAvailableSlots(
                                   doctor
                                 )}
@@ -349,10 +359,8 @@ class SearchMainContent extends Component {
                     </div>
                   ))}
 
-                <div class="load-more text-center">
-                  <a class="btn btn-primary btn-sm" href="javascript:void(0);">
-                    Load More
-                  </a>
+                <div className="load-more text-center">
+                  <button className="btn btn-primary btn-sm">Load More</button>
                 </div>
               </div>
             </div>

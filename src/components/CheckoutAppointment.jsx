@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { GlobalContext } from "../context";
 import Footer from "../layout/Footer";
 
 class CheckoutAppointment extends Component {
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -33,6 +35,14 @@ class CheckoutAppointment extends Component {
   }
 
   render() {
+    if (
+      localStorage &&
+      localStorage["responseData"] &&
+      JSON.parse(localStorage["responseData"]).id &&
+      !this.context.id
+    ) {
+      this.context.updateLoginDetails();
+    }
     return (
       <>
         <div className="content">

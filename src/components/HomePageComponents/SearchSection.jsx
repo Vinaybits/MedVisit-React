@@ -297,8 +297,8 @@ class SearchSection extends Component {
                   </div>
                   <div className="form-group search-date">
                     <DatePicker
-                      onChange={this.context.handleSearchDate}
-                      value={this.context.searchDate}
+                      onChange={this.context.handleFilterDate}
+                      value={this.context.filterDate}
                       minDate={new Date()}
                     />
                   </div>

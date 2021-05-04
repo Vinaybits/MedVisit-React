@@ -58,13 +58,13 @@ class MyTimeSlotSelection extends Component {
       document.getElementById("selected-slot-id").id = "";
     }
 
-    e.currentTarget.style.backgroundColor = "#42c0fb";
+    e.currentTarget.style.backgroundColor = "black";
     e.currentTarget.id = "selected-slot-id";
 
     this.setState({
       selectedSlot: slotTime,
       selectedDate: date,
-      backgroundColor: "#42c0fb",
+      backgroundColor: "black",
     });
 
     this.props.parentCallBack(slotTime, date, this.props.doctor);
@@ -121,14 +121,14 @@ class MyTimeSlotSelection extends Component {
           onClick={this.selectSlot.bind(this, slotTime, this.props.date)}
           type="button"
           key={slotTime}
-          class="btn btn-outline-warning btn-sm"
+          className="btn btn-outline-warning btn-sm"
         >
           {slotTime}
         </button>
       );
     });
 
-    return <div class="clini-infos">{timeSlotsUI}</div>;
+    return <div className="clini-infos">{timeSlotsUI}</div>;
   }
 }
 

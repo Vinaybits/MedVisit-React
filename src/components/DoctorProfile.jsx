@@ -1,13 +1,23 @@
 import React, { Component } from "react";
+import { GlobalContext } from "../context";
 import Footer from "../layout/Footer";
 
 class DoctorProfile extends Component {
+  static contextType = GlobalContext;
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
+    if (
+      localStorage &&
+      localStorage["responseData"] &&
+      JSON.parse(localStorage["responseData"]).id &&
+      !this.context.id
+    ) {
+      this.context.updateLoginDetails();
+    }
     return (
       <>
         <div class="content">

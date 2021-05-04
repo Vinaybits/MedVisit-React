@@ -1,24 +1,32 @@
-import React, { Component } from 'react';
-import BookingSucess from '../components/booking_success';
-import Breadcrumb from './Breadcrumb';
-import Footer from './Footer';
-
-
+import React, { Component } from "react";
+import BookingSucess from "../components/booking_success";
+import { GlobalContext } from "../context";
+import Breadcrumb from "./Breadcrumb";
+import Footer from "./Footer";
 
 class BookingLayout extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
+  static contextType = GlobalContext;
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    if (
+      localStorage &&
+      localStorage["responseData"] &&
+      JSON.parse(localStorage["responseData"]).id &&
+      !this.context.id
+    ) {
+      this.context.updateLoginDetails();
     }
-    render() { 
-        return ( 
-            <>
-            <Breadcrumb view={"Success"}/>
-            <BookingSucess/>
-            <Footer/>
-            </>
-         );
-    }
+    return (
+      <>
+        <Breadcrumb view={"Success"} />
+        <BookingSucess />
+        <Footer />
+      </>
+    );
+  }
 }
- 
+
 export default BookingLayout;
