@@ -5,11 +5,12 @@ import React, {Component} from "react";
 import { GlobalProvider } from './context';
 import {BookingProvider} from './bookingContext'
 import MasterLayout from "./layout/MasterLayout";
-import Calendar from "./components/Calendar";
+import Calendar from "./components/calendar";
 import DoctorSearchResult from './components/DoctorSearchResult';
 import CheckoutAppointment from "./components/CheckoutAppointment";
 import DoctorProfile from "./layout/DoctorProfile";
 import Header from "./layout/Header";
+import BookingLayout from "./layout/BookingLayout";
 class App extends Component {
    
     constructor(props) {
@@ -33,6 +34,7 @@ class App extends Component {
                             <Route path={'/doctor/search'} render={(props) => <DoctorSearchResult {...props}/>}/>
                             <Route exact path="/appointments/checkout" component={CheckoutAppointment}/>
                             <Route path={'/doctor/profile'} render={(props) => <DoctorProfile {...props} />} />
+                            <Route path={'/appointments/success'} render={(props) => <BookingLayout/>} />
                         </Switch>
 
                         

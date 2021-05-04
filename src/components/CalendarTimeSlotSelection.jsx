@@ -106,22 +106,22 @@ class CalendarTimeSlotSection extends Component {
 
     let timeSlotsUI = slotTimes.map((slotTime) => {
       return this.props.dayOff ? (
-        <button disabled className="timing-orange">
+        <a disabled className="timing-orange">
           <span>{slotTime}</span>
-        </button>
+        </a>
       ) : this.getSlots().includes(
           JSON.parse(JSON.stringify({ slotTime }))["slotTime"]
         ) ? (
-        <button disabled className="timing-orange">
+        <a disabled className="timing-orange">
           <span>{slotTime}</span>
-        </button>
+        </a>
       ) : (
-        <button
+        <a
           onClick={this.selectSlot.bind(this, slotTime, this.props.date)}
           className="timing"
         >
           <span>{slotTime}</span>
-        </button>
+        </a>
       );
     });
 

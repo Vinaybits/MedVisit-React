@@ -317,14 +317,7 @@ class Calendar extends Component {
                   </div>
                 </div>
 
-                <div className="submit-section proceed-btn text-right">
-                  <button
-                    className="btn btn-primary submit-btn"
-                    onClick={this.navigateToAppointmentCheckout}
-                  >
-                    Request Appointment{" "}
-                  </button>
-                </div>
+
 
                 <div className="row">
                   <div className="col-12 col-sm-4 col-md-6">
@@ -344,17 +337,20 @@ class Calendar extends Component {
                   </div>
                 </div>
 
-                <div className="card booking-schedule schedule-widget">
-                  <div className="schedule-header">
-                    <div className="row">
-                      <div className="col-md-12">
-                        <div className="day-slot">
-                          <ul>
-                            {this.state.fromDate > new Date() && (
+
+							<div class="card booking-schedule schedule-widget">
+								<div class="schedule-header">
+									<div class="row">
+										<div class="col-md-12">
+										
+										
+											<div class="day-slot">
+												<ul>
+                        {this.state.fromDate > new Date() && (
                               <li className="left-arrow">
-                                <button onClick={this.moveDateRangeLeft}>
+                                <a onClick={this.moveDateRangeLeft}>
                                   <i className="fa fa-chevron-left"></i>
-                                </button>
+                                </a>
                               </li>
                             )}
 
@@ -370,18 +366,25 @@ class Calendar extends Component {
                                 </button>
                               </li>
                             )}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="schedule-cont">
-                    <div className="row">
-                      <div className="col-md-12">
-                        <div className="time-slot">
-                          <ul className="clearfix">
-                            {this.state.datesInRange.map((p, i) => (
+												</ul>
+											</div>
+									
+											
+										</div>
+									</div>
+								</div>
+								
+								
+								
+								<div class="schedule-cont">
+									<div class="row">
+										<div class="col-md-12">
+										
+								
+											<div class="time-slot">
+												<ul class="clearfix">
+												
+                        {this.state.datesInRange.map((p, i) => (
                               <CalendarTimeSlotSection
                                 parentCallBack={this.callbackFunction}
                                 slotsOff={this.state.doctorSlotsOff}
@@ -389,31 +392,54 @@ class Calendar extends Component {
                                 date={p}
                               />
                             ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                          
+													
+												</ul>
+											</div>
+										
+											
+										</div>
+									</div>
+								</div>
+							
+								
+							</div>
+						
+							
+						
+							<div class="submit-section proceed-btn text-right">
+								<a href="/appointments/success" class="btn btn-primary submit-btn">Contact Support</a>
+							</div>
+						
 
-                <div className="submit-section proceed-btn text-right">
+
+
+
+
+                {/* <div className="submit-section proceed-btn text-right">
                   <button
                     className="btn btn-primary submit-btn"
                     onClick={this.navigateToAppointmentCheckout}
                   >
                     Request Appointment{" "}
                   </button>
-                </div>
+                </div> */}
+
+               
+
+               
+
+               
               </div>
             </div>
-            <RegistrationConfirmationPopup
+            {/* <RegistrationConfirmationPopup
               doctor={this.props.location.state.doctor}
               savePatientCallBack={this.callbackFunctionPatientModal}
               cancelPatientChangesCallBack={this.cancelPatientChangesCallBack}
               show={this.context.show}
               slotTime={this.context.selectedSlotTime}
               slotDate={this.context.selectedSlotDate}
-            />
+            /> */}
           </div>
         </div>
 
