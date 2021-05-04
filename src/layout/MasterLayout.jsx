@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { GlobalContext } from "../context";
 import Footer from "./Footer";
 
-import Homepage from "./Homepage";
+import Homepage from "../layout/homepage";
 class MasterLayout extends Component {
   static contextType = GlobalContext;
   constructor(props) {
