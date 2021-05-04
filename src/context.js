@@ -7,6 +7,7 @@ export class GlobalProvider extends Component {
 
     update_loggedIn_user(event) {
         console.log(event)
+        this.setState({patient: event})
         this.setState({firstName:event['first_name'], lastName:event["last_name"], id:event["id"], email : event.email, phone:event.phone,userId:event.id })
     }
 
@@ -49,6 +50,10 @@ export class GlobalProvider extends Component {
         })
     }
 
+    set_patient(param) {
+        this.setState({ patient: param })
+    }
+
 	state = {
 		    firstName: null,
             lastName: null,
@@ -72,7 +77,9 @@ export class GlobalProvider extends Component {
             doctorDaysOff: null,
             selectedSlotTime: null,
             selectedSlotDate: null,
-            callbackFunction:(param1,param2,param3,param4) => this.callback_function(param1,param2,param3,param4)
+        callbackFunction: (param1, param2, param3, param4) => this.callback_function(param1, param2, param3, param4),
+        patient: {},
+            setPatient:(param) => this.set_patient(param) 
 		
 	};
 	render() {

@@ -33,8 +33,7 @@ class RegistrationConfirmationPopup extends Component {
       navigateToCheckoutPage: false,
       show: false,
       patient: {
-        firstName: null,
-        lastName: null,
+        fullName: null,
         userId: null,
         email: null,
         phone: null,
@@ -58,8 +57,7 @@ class RegistrationConfirmationPopup extends Component {
   componentDidUpdate() {
     if (this.state.patient.userId !== this.context.id) {
       let patient = {
-        firstName: this.context.firstName,
-        lastName: this.context.lastName,
+        fullName: this.context.firstName + " " + this.context.lastName,
         userId: this.context.id,
         email: this.context.email,
         phone: this.context.phone,
@@ -131,9 +129,9 @@ class RegistrationConfirmationPopup extends Component {
     return datesInRange;
   };
 
-  onFirstNameChange = (e) => {
+  onFullNameChange = (e) => {
     let patient = this.state.patient;
-    patient.firstName = e.target.value;
+    patient.fullName = e.target.value;
     this.setState({ patient: patient });
   };
 
@@ -167,13 +165,13 @@ class RegistrationConfirmationPopup extends Component {
     return [year, month, day].join("-");
   };
   render() {
-    console.log(this.state.patient);
+    console.log("DOCTOR NAME IS -" + " " + this.props.doctor.name);
     return (
       <>
         <div
           class="modal fade"
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           role="dialog"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
@@ -192,28 +190,15 @@ class RegistrationConfirmationPopup extends Component {
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group form-focus">
                   <input
-                    id="firstName"
+                    id="fullName"
                     type="text"
-                    name="firstName"
+                    name="fullName"
                     className="form-control floating"
-                    value={this.state.patient.firstName}
-                    onChange={this.onFirstNameChange}
+                    value={this.state.patient.fullName}
+                    onChange={this.onFullNameChange}
                   />
                   <label className="focus-label">
-                    {this.state.patient.firstName ? "" : "First Name"}
-                  </label>
-                </div>
-                <div className="form-group form-focus">
-                  <input
-                    id="lastName"
-                    type="text"
-                    name="lastName"
-                    className="form-control floating"
-                    value={this.state.patient.lastName}
-                    onChange={this.onLastNameChange}
-                  />
-                  <label className="focus-label">
-                    {this.state.patient.lastName ? "" : "Last Name"}
+                    {this.state.patient.fullName ? "" : "Full Name"}
                   </label>
                 </div>
                 <div className="form-group form-focus">
@@ -251,7 +236,7 @@ class RegistrationConfirmationPopup extends Component {
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={this.handleClose}>
-                Confirm
+                Confirm Appointment
               </Button>
             </Modal.Footer>
           </Modal>

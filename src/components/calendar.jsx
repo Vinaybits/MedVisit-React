@@ -61,6 +61,7 @@ class Calendar extends Component {
 
   callbackFunction = (slotTime, slotDate) => {
     if (this.context.id) {
+      console.log(slotTime + " " + slotDate + " ");
       this.context.cancelPatientChangesCallBack(true);
       this.context.callbackFunction(
         this.props.location.state.doctor,
@@ -76,7 +77,7 @@ class Calendar extends Component {
   componentDidMount() {
     this.getDoctorCalendarSlotsOff(
       this.state.datesInRange[0],
-      this.state.datesInRange[6]
+      this.state.datesInRange[5]
     );
   }
 
@@ -94,22 +95,25 @@ class Calendar extends Component {
   }
 
   getDoctorCalendarSlotsOff(fromDate, toDate) {
-    this.homeService
-      .getDoctorCalendarSlotsOff(
-        this.context.selectedDoctor.id,
-        this.context.selectedDoctor.clinic_id,
-        fromDate,
-        toDate
-      )
-      .then((response) => {
-        if (response) {
-          if (response.data) {
-            this.setState({ doctorSlotsOff: response.data });
+    if (typeof fromDate !== "undefined" && typeof toDate !== "undefined") {
+      this.homeService
+        .getDoctorCalendarSlotsOff(
+          this.props.location.state.doctor.id,
+          this.props.location.state.doctor.clinic_id,
+          fromDate,
+          toDate
+        )
+        .then((response) => {
+          if (response) {
+            if (response.data) {
+              this.setState({ doctorSlotsOff: response.data });
+              console.log("SUCCESSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            }
+          } else {
+            console.log("Could not fetch data");
           }
-        } else {
-          console.log("Could not fetch data");
-        }
-      });
+        });
+    }
   }
 
   navigateToAppointmentCheckout = (e) => {
@@ -244,9 +248,6 @@ class Calendar extends Component {
   };
 
   render() {
-    console.log(this.context);
-    console.log(this.bookType);
-    console.log(this.state.patient);
     // publish calendar upto sixty days
     let sixtyDaysFromNow = new Date(
       new Date().setDate(new Date().getDate() + 59)

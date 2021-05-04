@@ -6,17 +6,18 @@ import { Redirect } from "react-router-dom";
 import HomeService from "./home.service";
 import { GlobalContext } from "../context";
 import RegistrationConfirmationPopup from "./RegistrationConfirmationPopup";
+import MyTimeSlotSelection from "./MyTimeSlotSelection";
 
 function formatDate(date) {
-  var d = new Date(date),
-    month = "" + (d.getMonth() + 1),
-    day = "" + d.getDate(),
-    year = d.getFullYear();
+  let d = new Date(date);
+  let month = "" + (d.getMonth() + 1);
+  let day = "" + d.getDate();
+  let year = d.getFullYear();
 
   if (month.length < 2) month = "0" + month;
   if (day.length < 2) day = "0" + day;
 
-  return [day, month, year].join("/");
+  return [year, month, day].join("-");
 }
 
 class SearchMainContent extends Component {
@@ -31,6 +32,7 @@ class SearchMainContent extends Component {
     };
 
     this.homeService = new HomeService();
+    this.callbackFunction = this.callbackFunction.bind(this);
   }
 
   getDoctorCalendarOffDaysAndNonAvailableSlots = (doctor) => (e) => {
@@ -93,6 +95,49 @@ class SearchMainContent extends Component {
     if (day.length < 2) day = "0" + day;
 
     return [year, month, day].join("-");
+  };
+
+  callbackFunction = (slotTime, slotDate, selectedDoctor) => {
+    console.log(slotTime + " " + slotDate + " " + selectedDoctor.name);
+    if (this.context.id) {
+      this.context.cancelPatientChangesCallBack(true);
+      this.context.callbackFunction(
+        selectedDoctor,
+        this.state.doctorDaysOff,
+        slotTime,
+        slotDate
+      );
+    } else {
+      this.context.handleClose("login");
+    }
+  };
+
+  getDoctorCalendarSlotsOff(fromDate, toDate, selectedDoctor) {
+    this.homeService
+      .getDoctorCalendarSlotsOff(
+        selectedDoctor.id,
+        selectedDoctor.clinic_id,
+        fromDate,
+        toDate
+      )
+      .then((response) => {
+        if (response) {
+          if (response.data) {
+            return response.data;
+          }
+        } else {
+          console.log("Could not fetch data");
+        }
+      });
+  }
+
+  callbackFunctionPatientModal = (patient, show) => {
+    this.context.setPatient(patient);
+    this.setState({ show: show });
+  };
+
+  cancelPatientChangesCallBack = (show) => {
+    this.context.cancelPatientChangesCallBack(show);
   };
 
   render() {
@@ -257,45 +302,34 @@ class SearchMainContent extends Component {
                               Available Slots -{" "}
                               {formatDate(this.context.searchDate)}
                             </p>
-                            <div class="clini-infos">
-                              <button
-                                type="button"
-                                class="btn btn-outline-warning btn-sm"
-                              >
-                                8:30 AM
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-outline-warning btn-sm"
-                              >
-                                9:00 AM
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-outline-warning btn-sm"
-                              >
-                                9:30 AM
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-outline-warning btn-sm"
-                              >
-                                10:00 AM
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-outline-warning btn-sm"
-                              >
-                                10:30 AM
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-outline-warning btn-sm"
-                              >
-                                11:00 AM
-                              </button>
-                            </div>
-
+                            <MyTimeSlotSelection
+                              parentCallBack={this.callbackFunction}
+                              slotsOff={this.getDoctorCalendarSlotsOff(
+                                formatDate(this.context.searchDate),
+                                formatDate(
+                                  new Date(
+                                    new Date(this.context.searchDate).setDate(
+                                      this.context.searchDate.getDate() + 1
+                                    )
+                                  )
+                                ),
+                                doctor
+                              )}
+                              date={formatDate(this.context.searchDate)}
+                              doctor={doctor}
+                            />
+                            <RegistrationConfirmationPopup
+                              doctor={doctor}
+                              savePatientCallBack={
+                                this.callbackFunctionPatientModal
+                              }
+                              cancelPatientChangesCallBack={
+                                this.cancelPatientChangesCallBack
+                              }
+                              show={this.context.show}
+                              slotTime={this.context.selectedSlotTime}
+                              slotDate={this.context.selectedSlotDate}
+                            />
                             <div>
                               {/* <button type="button" class="btn btn-outline-info" onClick={this.viewDoctorProfile(doctor)}>View Profile</button> */}
                               {/* <button type="button" class="btn btn-outline-info" onClick={this.getDoctorCalendarOffDaysAndNonAvailableSlots(doctor)}>Book Appointment</button> */}
@@ -324,6 +358,14 @@ class SearchMainContent extends Component {
             </div>
           </div>
         </div>
+        {/* <RegistrationConfirmationPopup
+          doctor={this.state.selectedDoctor.location.state.doctor}
+          savePatientCallBack={this.callbackFunctionPatientModal}
+          cancelPatientChangesCallBack={this.cancelPatientChangesCallBack}
+          show={this.context.show}
+          slotTime={this.context.selectedSlotTime}
+          slotDate={this.context.selectedSlotDate}
+        /> */}
       </>
     );
   }
