@@ -10,10 +10,10 @@ class CalendarTimeSlotSection extends Component {
       selectedDoctorId: "",
       selectedClinicId: "",
       backgroundColor: "",
-      startTimeHours: 7,
+      startTimeHours: 10,
       startTimeMinutes: 0,
-      lastTimeHours: 16,
-      lastTimeMinutes: 30,
+      lastTimeHours: 15,
+      lastTimeMinutes: 0,
       slotTimeInMinutes: 30,
       doctorDaysOff: [],
       fromDate: {},
@@ -47,6 +47,7 @@ class CalendarTimeSlotSection extends Component {
         );
       }
     }
+    
     return slotsOffTimes;
   }
 
@@ -101,8 +102,10 @@ class CalendarTimeSlotSection extends Component {
       slotTimes.push(
         this.formatTime(timeSlot) + (timeSlot.getHours() < 12 ? " AM" : " PM")
       );
+      
       timeSlot.setMinutes(timeSlot.getMinutes() + this.state.slotTimeInMinutes);
     }
+    
 
     let timeSlotsUI = slotTimes.map((slotTime) => {
       return this.props.dayOff ? (

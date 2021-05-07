@@ -168,40 +168,34 @@ class RegistrationConfirmationPopup extends Component {
     console.log("DOCTOR NAME IS -" + " " + this.props.doctor.name);
     return (
       <>
-        <div
-          className="modal fade"
-          id="exampleModal"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
+        
           <Modal show={this.props.show} onHide={this.handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>
-                Appointment with Dr. {this.props.doctor.name} at{" "}
+               <span> Appointment Request with Dr. {this.props.doctor.name} 
+               <span className="badge badge-pill badge-sm badge-info">at{" "}
                 {this.props.slotTime} on {this.props.slotDate}
+                </span>
+                <br></br>
+                <small><i>Submit/Update below appointment details</i></small>
+                </span>
+               
+ 
               </Modal.Title>
             </Modal.Header>
-            <Modal.Header>
-              <p>Confirm/Change Patient details</p>
-            </Modal.Header>
+            
             <Modal.Body>
               <form onSubmit={this.handleSubmit}>
-                <div className="form-group form-focus">
-                  <input
-                    id="fullName"
-                    type="text"
-                    name="fullName"
-                    className="form-control floating"
-                    value={this.state.patient.fullName}
-                    onChange={this.onFullNameChange}
-                  />
-                  <label className="focus-label">
-                    {this.state.patient.fullName ? "" : "Full Name"}
-                  </label>
+              <div className="myform form ">
+                <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Full Name</label>
+               
+                  <input id="fullName"  type="text"  name="fullName" className="form-control floating" value={this.state.patient.fullName}
+                    onChange={this.onFullNameChange} />
+                  
                 </div>
-                <div className="form-group form-focus">
+                <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Email address</label>
                   <input
                     id="email"
                     type="text"
@@ -214,11 +208,10 @@ class RegistrationConfirmationPopup extends Component {
                     }
                     onChange={this.onEmailChange}
                   />
-                  <label className="focus-label">
-                    {this.state.patient.email === "undefined" ? "Email" : ""}
-                  </label>
+                  
                 </div>
-                <div className="form-group form-focus">
+                <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Mobile Number</label>
                   <input
                     id="phone"
                     type="phone"
@@ -227,20 +220,23 @@ class RegistrationConfirmationPopup extends Component {
                     value={this.state.patient.phone}
                     onChange={this.onPhoneChange}
                   />
-                  <label className="focus-label">
-                    {" "}
-                    {this.state.patient.phone ? "" : "Phone"}
-                  </label>
+
+                 
                 </div>
+                <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Additional details (if any)</label>
+                <textarea class="form-control" rows="5" id="comment"></textarea>
+                  
+                 
+                </div>
+              </div>
               </form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleClose}>
-                Confirm Appointment
-              </Button>
+            <button type="button" class="btn btn-primary">Submit Request</button>
             </Modal.Footer>
           </Modal>
-        </div>
+        
       </>
     );
   }

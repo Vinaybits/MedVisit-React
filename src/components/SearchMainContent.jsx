@@ -289,18 +289,15 @@ class SearchMainContent extends Component {
                               </p>
 
                               <h5 className="doc-department">
-                                <img
-                                  src={dental_sp}
-                                  className="img-fluid"
-                                  alt="Speciality"
-                                />
-                                {doctor.speciality}
+                                
+                                <span class="badge badge-pill badge-info">{doctor.speciality}</span>
+                                
                               </h5>
                               <hr />
 
                               <button
                                 type="button"
-                                className="btn btn-outline-info"
+                                className="btn btn-outline-info btn-sm"
                                 onClick={() => this.viewDoctorProfile(doctor)}
                               >
                                 View Profile
@@ -345,7 +342,7 @@ class SearchMainContent extends Component {
                               {/* <button type="button" className="btn btn-outline-info" onClick={this.getDoctorCalendarOffDaysAndNonAvailableSlots(doctor)}>Book Appointment</button> */}
                               <button
                                 type="button"
-                                className="btn btn-light btn-sm"
+                                className="btn btn-outline-info btn-sm"
                                 onClick={this.getDoctorCalendarOffDaysAndNonAvailableSlots(
                                   doctor
                                 )}
